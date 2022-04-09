@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name="submissions")
@@ -124,5 +125,18 @@ public class Submission {
 
     public void setTeacherId(User teacherId) {
         this.teacherId = teacherId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Submission)) return false;
+        Submission that = (Submission) o;
+        return getGrade() == that.getGrade() && getSubmissionId().equals(that.getSubmissionId()) && getSubmissionDate().equals(that.getSubmissionDate()) && getAssignmentId().equals(that.getAssignmentId()) && getStudentNumber().equals(that.getStudentNumber()) && getCourseCode().equals(that.getCourseCode()) && getAttachmentId().equals(that.getAttachmentId()) && getTeacherId().equals(that.getTeacherId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSubmissionId(), getSubmissionDate(), getGrade(), getAssignmentId(), getStudentNumber(), getCourseCode(), getAttachmentId(), getTeacherId());
     }
 }
