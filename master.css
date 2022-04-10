@@ -12,8 +12,57 @@ body {
   font-size: 25px;
 }
 
+.box-info {
+  overflow: hidden;
+  background-color: #FCF3CF !important;
+  padding: 5px;
+  border-radius: 10px;
+  color: #A93226 !important;
+}
+
+.box-info h1{
+  width: 25%;
+  text-align: center;
+
+}
+
+.box-info .float-parent {
+  width: 75%;
+}
+
+.box-info .float-parent .float-start {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.box-info .float-parent .float-start p {
+  color: #8F9BB3;
+
+}
+
+.box-info .float-parent .float-end {
+  width: 50%
+  float: right;
+}
+
+.box-info .float-end h2, .box-info .float-end p {
+  margin-bottom: 0 !important;
+}
+
+.heading {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: #A93226;
+  font-weight: bold;
+}
+
 .logout {
   color: #FF4842 !important;
+}
+
+.main-content {
+  background-color: white;
+  padding: 20px;
 }
 
 .nav {
@@ -26,9 +75,9 @@ body {
   color: #8F9BB3;
 }
 
-.nav-col {
+/* .nav-col {
   max-width: 250px;
-}
+} */
 
 .nav-item {
   min-height: 65px;
