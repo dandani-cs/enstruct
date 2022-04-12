@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
-public class EnrollmentService implements IEntrollmentService {
+public class EnrollmentService implements IEnrollmentService {
     @Autowired
     private EnrollmentRepository repository;
 
@@ -31,8 +31,14 @@ public class EnrollmentService implements IEntrollmentService {
     public List<Enrollment> findByUserId(long userId) { return repository.findByUserUserId(userId); }
 
     @Override
-    public List<Enrollment> findCoursesWithUserId(long userId, long courseId) {
-        return repository.findByUserUserIdAndClassesCourseCode(userId, courseId);
+    public List<Enrollment> findByCourseId(long courseId) {
+        return repository.findByClassesCourseCode(courseId);
+    }
+
+    @Override
+    public Enrollment findByCourseAndUserId(long userId, long courseId) {
+        Optional opt = repository.findByUserUserIdAndClassesCourseCode(userId, courseId);
+        return opt.isEmpty() ? null : (Enrollment) opt.get();
     }
 
     @Override
