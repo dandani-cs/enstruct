@@ -1,0 +1,88 @@
+html, body {
+    height    : 100%;
+    min-height: 100%;
+}
+
+.login-bg {
+    background       : url('../img/login-bg.jpg');
+    background-repeat: no-repeat;
+    background-size  : cover;
+}
+
+.login-hr {
+    width: 110%;
+    position: relative;
+    left: -5%;
+    color: #523535;
+}
+
+.login-bg::before {
+    background-color: rgba(249, 235, 234, 0.5);
+    position: absolute;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.fill-height {
+    min-height : 100vh;
+}
+
+.login-btn {
+    background-color: #E05252;
+    color: #fefefe;
+    border: none;
+    padding: 0.5em 1.75em;
+    border-radius: 32px;
+}
+
+.login-btn:hover {
+    background-color: rgb(169, 68, 68);
+}
+
+.login-input {
+    font-size: 1.1em;
+    padding  : 0.5em 1em;
+    border-radius: 15px;
+    border   : 1px solid rgba(139, 138, 138, 0.5);
+}
+
+/* Fonts */
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+.font-fredoka {
+    font-family: 'Fredoka One', cursive;
+}
+
+.color-prim-red {
+    color: #A93226;
+}
+
+.color-bright-red {
+    color: #E05252;
+}
+
+.color-muted-red {
+    color: #9F6A6A;
+}
+
+.color-brown {
+    color: #523535;
+}
+
+/* Subject colors */
+.color-sub-1 {
+    background-color: #59A96A;
+}
+
+.color-sub-2 {
+    background-color: #3685B5;   
+}
+
+.color-sub-3 {
+    background-color: #104547;
+}

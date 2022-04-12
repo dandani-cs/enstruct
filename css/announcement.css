@@ -1,0 +1,115 @@
+html, body {
+    height    : 100%;
+    min-height: 100%;
+}
+
+#calendar-container {
+    padding       : 2.5em;
+    box-shadow    : 0px 1px 5px 1px #ebebeb;
+    border-radius : 12px;
+}
+
+.date-cell {
+    min-height : 125px;
+    padding    : 0;
+}
+
+.date-num {
+    margin-right: 0.5em;
+    margin-top  : 0.25em;
+    margin-bottom: 0em;
+}
+
+.date-announcement {
+    background   : #ebebeb;
+    font-size    : 0.8em;
+    width        : 100%;
+    padding      : 0em 0.75em;
+    background   : #3685b5;
+    color        : #fff;
+}
+
+
+.announcement {
+    padding: 1em 2em;
+    border-left: 0.5em solid #2e2e2e;
+    box-shadow: 0px 5px 10px 1px rgba(139, 138, 138, 0.1);;
+}
+.announcement:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.announcement > .announcement-content {
+    margin-bottom: 0em;
+}
+
+.agenda-container {
+    box-shadow    : 0px 1px 5px 1px #ebebeb;
+    border-radius : 12px;   
+    padding-bottom: 2em;
+}
+
+.agenda-head {
+    padding-left: 1.5em; 
+    padding-top : 1em;
+}
+
+.agenda {
+    border-left: 0.5em solid #2e2e2e;
+}
+
+.highlight {
+    display : inline-block;
+    position: relative;
+    z-index : 1;
+}
+
+.highlight::before {
+    position  : absolute;
+    content   : " ";
+    width     : 100%;
+    left      : 0%;
+    bottom    : 25%;
+    height    : 0.65em;
+    z-index   : -1;
+    background-color: #FBC445;
+}
+
+
+/* Fonts */
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+.font-fredoka {
+    font-family: 'Fredoka One', cursive;
+}
+
+.color-prim-red {
+    color: #A93226;
+}
+
+.color-bright-red {
+    color: #E05252;
+}
+
+.color-muted-red {
+    color: #9F6A6A;
+}
+
+.color-brown {
+    color: #523535;
+}
+
+/* Subject colors */
+.color-sub-1 {
+    background-color: #59A96A;
+}
+
+.color-sub-2 {
+    background-color: #3685B5;   
+}
+
+.color-sub-3 {
+    background-color: #104547;
+}
