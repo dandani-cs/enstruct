@@ -97,4 +97,5 @@ public class User {
     public void setTeacher(Boolean teacher) {
         isTeacher = teacher;
     }
+
 }
