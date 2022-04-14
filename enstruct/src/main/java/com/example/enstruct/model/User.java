@@ -3,15 +3,13 @@ package com.example.enstruct.model;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity(name = "users")
 public class User {
     @Id
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long userId;
 
     private String userName;
     private String firstName;
@@ -20,20 +18,20 @@ public class User {
 
     private String  email;
     private String  password;
-    private Boolean isTeacher;
+    private boolean isTeacher;
 
     public User() {
     }
 
     public User(Long userId, String userName, String firstName, String lastName, String middleName, String email, String password, Boolean isTeacher) {
-        this.userId = userId;
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.email = email;
-        this.password = password;
-        this.isTeacher = isTeacher;
+        setUserId(userId);
+        setUserName(userName);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setMiddleName(middleName);
+        setEmail(email);
+        setPassword(password);
+        setTeacher(isTeacher);
     }
 
     public Long getUserId() {
