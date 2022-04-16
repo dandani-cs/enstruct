@@ -1,0 +1,61 @@
+body {
+  background-color: #F9EBEA;
+}
+
+
+.active {
+  background-color: #A93226 !important;
+}
+
+.bi {
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+.logout {
+  color: #FF4842 !important;
+}
+
+.nav {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav a {
+  color: #8F9BB3;
+}
+
+.nav-col {
+  max-width: 250px;
+}
+
+.nav-item {
+  min-height: 65px;
+}
+
+.nav-link {
+  height: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.nav-link:focus, .nav-link:hover {
+  color: #A93226;
+}
+
+.profile-pic {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: #A93226;
+  /* margin: top right bottom left*/
+  margin: 50px auto 50px auto;
+}
+
+#user-fullname {
+  margin-bottom: 0px;
+}
