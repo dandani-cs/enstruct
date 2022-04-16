@@ -40,18 +40,6 @@ public class Assignment {
 
     }
 
-    public Assignment(long assignmentId, String name, String instruction, int maxScore, Date deadline, Date availabilityStart, Date availabilityEnd, Classes course, Attachment attachment) {
-        this.assignmentId = assignmentId;
-        this.name = name;
-        this.instruction = instruction;
-        this.maxScore = maxScore;
-        this.deadline = deadline;
-        this.availabilityStart = availabilityStart;
-        this.availabilityEnd = availabilityEnd;
-        this.course = course;
-        this.attachment = attachment;
-    }
-
     public long getAssignmentId() {
         return assignmentId;
     }
@@ -122,18 +110,5 @@ public class Assignment {
 
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Assignment)) return false;
-        Assignment that = (Assignment) o;
-        return getAssignmentId() == that.getAssignmentId() && getMaxScore() == that.getMaxScore() && getName().equals(that.getName()) && getInstruction().equals(that.getInstruction()) && getDeadline().equals(that.getDeadline()) && getAvailabilityStart().equals(that.getAvailabilityStart()) && getAvailabilityEnd().equals(that.getAvailabilityEnd()) && getCourse().equals(that.getCourse()) && getAttachment().equals(that.getAttachment());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAssignmentId(), getName(), getInstruction(), getMaxScore(), getDeadline(), getAvailabilityStart(), getAvailabilityEnd(), getCourse(), getAttachment());
     }
 }

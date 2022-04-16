@@ -16,7 +16,7 @@ public class Submission {
     private Long submissionId;
 
     private Date submissionDate;
-    private int grade;
+    private Double grade;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
@@ -34,13 +34,13 @@ public class Submission {
     @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "courseCode")
-    private Classes courseCode;
+    private Classes course;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "attachmentId")
-    private Attachment attachmentId;
+    private Attachment attachment;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
@@ -50,17 +50,6 @@ public class Submission {
 
     public Submission() {
 
-    }
-
-    public Submission(Long submissionId, Date submissionDate, int grade, Assignment assignmentId, User studentNumber, Classes courseCode, Attachment attachmentId, User teacherId) {
-        this.submissionId = submissionId;
-        this.submissionDate = submissionDate;
-        this.grade = grade;
-        this.assignmentId = assignmentId;
-        this.studentNumber = studentNumber;
-        this.courseCode = courseCode;
-        this.attachmentId = attachmentId;
-        this.teacherId = teacherId;
     }
 
     public Long getSubmissionId() {
@@ -79,11 +68,11 @@ public class Submission {
         this.submissionDate = submissionDate;
     }
 
-    public int getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 
@@ -103,20 +92,20 @@ public class Submission {
         this.studentNumber = studentNumber;
     }
 
-    public Classes getCourseCode() {
-        return courseCode;
+    public Classes getCourse() {
+        return course;
     }
 
-    public void setCourseCode(Classes courseCode) {
-        this.courseCode = courseCode;
+    public void setCourse(Classes course) {
+        this.course = course;
     }
 
-    public Attachment getAttachmentId() {
-        return attachmentId;
+    public Attachment getAttachment() {
+        return attachment;
     }
 
-    public void setAttachmentId(Attachment attachmentId) {
-        this.attachmentId = attachmentId;
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 
     public User getTeacherId() {
@@ -127,16 +116,5 @@ public class Submission {
         this.teacherId = teacherId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Submission)) return false;
-        Submission that = (Submission) o;
-        return getGrade() == that.getGrade() && getSubmissionId().equals(that.getSubmissionId()) && getSubmissionDate().equals(that.getSubmissionDate()) && getAssignmentId().equals(that.getAssignmentId()) && getStudentNumber().equals(that.getStudentNumber()) && getCourseCode().equals(that.getCourseCode()) && getAttachmentId().equals(that.getAttachmentId()) && getTeacherId().equals(that.getTeacherId());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getSubmissionId(), getSubmissionDate(), getGrade(), getAssignmentId(), getStudentNumber(), getCourseCode(), getAttachmentId(), getTeacherId());
-    }
 }
