@@ -1,0 +1,30 @@
+.card {
+    border-radius: 5px;
+    margin-bottom: 1.2vw;
+}
+
+.card:hover {
+    background-color: #A93226;
+    color: white;
+}
+
+.card-title {
+    margin-bottom: 20px;
+    font-size: 1.4vw;
+    display: inline-block;
+}
+
+.lancpp {
+    color:blue;
+    border: 1px solid #DACECD;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 75px 75px;
+}
+
+.card-text {
+    margin-bottom: 15px;
+    font-size: 1.2vw;
+}
+
