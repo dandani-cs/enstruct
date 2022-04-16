@@ -31,7 +31,7 @@ public class UserService implements IUserService {
     @Override
     public User getUser(long userId) {
         Optional opt = repository.findById(userId);
-        return opt.isEmpty() ? null : (User) opt.get();
+        return !opt.isPresent() ? null : (User) opt.get();
     }
 
     @Override

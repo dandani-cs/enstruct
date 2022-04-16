@@ -26,7 +26,7 @@ public class EnrollmentService implements IEnrollmentService {
     public Enrollment findByEnrollmentId(long enrollmentId)
     {
         Optional opt = repository.findById(enrollmentId);
-        return opt.isEmpty() ? null : (Enrollment) opt.get();
+        return  !opt.isPresent() ? null : (Enrollment) opt.get();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EnrollmentService implements IEnrollmentService {
     @Override
     public Enrollment findByCourseAndUserId(long userId, long courseId) {
         Optional opt = repository.findByUserUserIdAndClassesCourseCode(userId, courseId);
-        return opt.isEmpty() ? null : (Enrollment) opt.get();
+        return !opt.isPresent() ? null : (Enrollment) opt.get();
     }
 
     @Override
