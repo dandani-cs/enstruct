@@ -4,9 +4,11 @@ import com.example.enstruct.model.Assignment;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface AssignmentRepository extends CrudRepository<Assignment, Long> {
     // for students to know upcoming assignments
     @Query(value = "SELECT * FROM Assignment WHERE courseCode = ?1 AND DATE(deadline) > CURDATE()", nativeQuery = true)

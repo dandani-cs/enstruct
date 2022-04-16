@@ -4,10 +4,12 @@ import com.example.enstruct.model.Assignment;
 import com.example.enstruct.repository.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.Assign;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AssignmentService implements IAssignmentService{
     @Autowired
     private AssignmentRepository repository;

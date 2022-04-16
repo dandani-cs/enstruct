@@ -3,10 +3,12 @@ package com.example.enstruct.service;
 import com.example.enstruct.model.User;
 import com.example.enstruct.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserService implements IUserService {
     @Autowired
     private UserRepository repository;
@@ -23,7 +25,7 @@ public class UserService implements IUserService {
     @Override
     public User getUser(long userId) {
         Optional opt = repository.findById(userId);
-        return opt.isEmpty() ? null : (User) opt.get();
+        return !opt.isPresent() ? null : (User) opt.get();
     }
 
     @Override

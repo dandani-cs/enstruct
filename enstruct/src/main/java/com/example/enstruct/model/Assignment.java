@@ -28,7 +28,7 @@ public class Assignment {
     @JsonIgnoreProperties(value = {"assignments", "hibernateLazyInitializer"})
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "courseCode")
-    private Course course;
+    private Classes course;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"assignments", "hibernateLazyInitializer"})
@@ -40,7 +40,7 @@ public class Assignment {
 
     }
 
-    public Assignment(long assignmentId, String name, String instruction, int maxScore, Date deadline, Date availabilityStart, Date availabilityEnd, Course course, Attachment attachment) {
+    public Assignment(long assignmentId, String name, String instruction, int maxScore, Date deadline, Date availabilityStart, Date availabilityEnd, Classes course, Attachment attachment) {
         this.assignmentId = assignmentId;
         this.name = name;
         this.instruction = instruction;
@@ -108,11 +108,11 @@ public class Assignment {
         this.availabilityEnd = availabilityEnd;
     }
 
-    public Course getCourse() {
+    public Classes getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(Classes course) {
         this.course = course;
     }
 

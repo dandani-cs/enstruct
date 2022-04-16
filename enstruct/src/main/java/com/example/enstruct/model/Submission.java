@@ -34,7 +34,7 @@ public class Submission {
     @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "courseCode")
-    private Course courseCode;
+    private Classes courseCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
@@ -52,7 +52,7 @@ public class Submission {
 
     }
 
-    public Submission(Long submissionId, Date submissionDate, int grade, Assignment assignmentId, User studentNumber, Course courseCode, Attachment attachmentId, User teacherId) {
+    public Submission(Long submissionId, Date submissionDate, int grade, Assignment assignmentId, User studentNumber, Classes courseCode, Attachment attachmentId, User teacherId) {
         this.submissionId = submissionId;
         this.submissionDate = submissionDate;
         this.grade = grade;
@@ -103,11 +103,11 @@ public class Submission {
         this.studentNumber = studentNumber;
     }
 
-    public Course getCourseCode() {
+    public Classes getCourseCode() {
         return courseCode;
     }
 
-    public void setCourseCode(Course courseCode) {
+    public void setCourseCode(Classes courseCode) {
         this.courseCode = courseCode;
     }
 
