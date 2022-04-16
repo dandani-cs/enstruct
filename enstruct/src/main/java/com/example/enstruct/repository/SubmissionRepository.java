@@ -19,6 +19,6 @@ public interface SubmissionRepository extends CrudRepository<Submission, Long> {
     List<Submission> getAllSubmissionsInAssignment(long assignmentId);
 
     // for grade view in individual student
-    @Query(value = "SELECT * FROM submissions WHERE studentNumber = ?1")
+    @Query(value = "SELECT * FROM submissions WHERE studentNumber = ?1", nativeQuery = true)
     List<Submission> getAllSubmissionsOfStudent(long studentNumber);
 }

@@ -42,12 +42,6 @@ public class Submission {
     @JoinColumn(name = "attachmentId")
     private Attachment attachment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = {"submissions", "hibernateLazyInitializer"})
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JoinColumn(name = "userId")
-    private User teacherId;
-
     public Submission() {
 
     }
@@ -106,14 +100,6 @@ public class Submission {
 
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
-    }
-
-    public User getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(User teacherId) {
-        this.teacherId = teacherId;
     }
 
 
