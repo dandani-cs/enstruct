@@ -1,0 +1,20 @@
+insert into users (user_id, first_name, last_name, user_name, password, is_teacher) values (0, "Ninong", "Ry", "qwe", "qwe", 0);
+insert into users (user_id, first_name, middle_name, last_name, user_name, password, is_teacher) values (1, "Mr", "Teddy", "Bean", "zxc", "zxc", 0);
+insert into users (user_id, first_name, last_name, user_name, password, is_teacher) values (2, "Professor", "X", "asd", "asd", 1);
+
+insert into classes (course_code, course_name, enabled, user_id) values ("CS126L_BM1_2Q2122", "Computer Programming 1 Laboratory", 1, 2);
+insert into classes (course_code, course_name, enabled, user_id) values ("CS126L_BM2_2Q2122", "Computer Programming 1 Laboratory", 1, 2);
+
+insert into enrollments (enrollment_id, classes_course_code, user_user_id) values (20, "CS126L_BM1_2Q2122", 0);
+insert into enrollments (enrollment_id, classes_course_code, user_user_id) values (21, "CS126L_BM1_2Q2122", 1);
+
+insert into attachments (file_id, filename, user_id) values (20, "Ex1NinongRy.cpp", 0);
+insert into attachments (file_id, filename, user_id) values (21, "Ex1MrBean.cpp", 1);
+
+insert into assignments (assignment_id, max_score, name, course_code) values (30, 100, "Exercise 1: Push ups", "CS126L_BM1_2Q2122");
+insert into assignments (assignment_id, max_score, name, course_code) values (31, 100, "Exercise 2: Sit ups", "CS126L_BM1_2Q2122");
+insert into assignments (assignment_id, max_score, name, course_code) values (32, 100, "Exercise 1: Push ups", "CS126L_BM2_2Q2122");
+insert into assignments (assignment_id, max_score, name, course_code) values (33, 100, "Exercise 2: Sit ups", "CS126L_BM2_2Q2122");
+
+insert into submissions (submission_id, grade, assignment_id, attachment_id, course_code, user_id) values (40, 80, 30, 20, "CS126L_BM1_2Q2122", 0);
+insert into submissions (submission_id, grade, assignment_id, attachment_id, course_code, user_id) values (41, 100, 30, 21, "CS126L_BM1_2Q2122", 1);

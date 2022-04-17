@@ -12,11 +12,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="master.css">
-  <link rel="stylesheet" href="css/repositories.css">
+  <link rel="stylesheet" href="css/submissions.css">
 
   <title>E-nstruct</title>
 </head>
-<body>
+<body onload="loadIDE()">
 
   <div class="container-fluid">
     <div class="row" style="height: 100vh;">
@@ -53,74 +53,49 @@
       </div>
 
       <div class="col-sm-10 main-content" >
-        <h1 class="heading">REPOSITORY</h1>
-        <div class="row prow" >
-          
-          
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" >CS126L</h5>
-                &nbsp;
-                <h5 class="card-title sec" >BM1 </h5>
-                <p class="card-text">Exercise 1: Data Types</p>
-
-                <span class="dot"></span>
-                <span class="card-text">C++</span>
-              </div>
-            </div>
+        <div style="display:flex; flex-direction: row; align-items: center;">
+          <div style="display:flex; flex-direction: column; flex-grow: 1;">
+            <h1 class="heading" style="margin-bottom: 10px;">REPOSITORY: ${courseCode} ${section}</h1>
+            <h2 style="color: #A93226; margin-bottom: 20px;">${name}</h2>
           </div>
-
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" >CS126L</h5>
-                &nbsp;
-                <h5 class="card-title sec" >BM1 </h5>
-                <p class="card-text">Exercise 2:Operators</p>
-
-                <span class="dot"></span>
-                <span class="card-text">C++</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" >CS126L</h5>
-                &nbsp;
-                <h5 class="card-title sec" >BM1 </h5>
-                <p class="card-text">Exercise 3: Arrays</p>
-
-                <span class="dot"></span>
-                <span class="card-text">C++</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" >CS126L</h5>
-                &nbsp;
-                <h5 class="card-title sec" >BM1 </h5>
-                <p class="card-text">Exercise 4: Conditionals</p>
-
-                <span class="dot"></span>
-                <span class="card-text">C++</span>
-              </div>
-            </div>
-          </div>
-
-          
-          
-
-
         </div>
-      </div>
+        <div class="row">
 
-     
+          <div class="col borders studname">
+            <span class="arrows"><</span>
+            <div class="selectholder">
+              <select onchange="location.href = this.value;">
+                <option selected hidden>Choose here</option>
+                <option value="volvo">Volvo</option>
+                <option value="halo">Saab</option>
+                <option value="opel">Opdsfa fdsf asfas fsdael</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <span style="font-size: 1.8vw">></span>
+          </div>
+        </div>
+
+        <div class="borders exer">
+          <div class="ideSide">
+              <iframe 
+              id="oc-editor"
+              height="100%"
+              src="https://onecompiler.com/embed/cpp?listenToEvents=true&hideNew=true"
+              width="100%"
+            ></iframe>
+          </div>
+          <div class="scoreSide">
+            <div style="display:flex; flex-direction: row; justify-content: space-between;">
+              <span>Score:</span>
+              <input readonly>
+            </div>
+            <span>LATE SUBMISSION</span>
+            <div style="flex-grow:1"></div>
+          </div>
+        </div>
+    
+      </div>
     </div>
   </div>
 
@@ -129,5 +104,23 @@
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+  <script>
+    function loadIDE() {
+        var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
+        iFrame.contentWindow.postMessage({
+            eventType: 'populateCode',
+            language: 'cpp',
+            files: [
+            {
+                "name": "TESTING.cpp",
+                "content": "#include<iostream>\nusing namespace std;\n\nint main() {\ncout<<\"EUREKAAA!!!!\";\n}"
+            }
+        ]
+        }, "*");
+        iFrame.contentWindow.postMessage({
+            eventType: 'triggerRun'
+        }, "*");
+    }
+</script>
 </body>
 </html>

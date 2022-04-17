@@ -24,28 +24,107 @@ import java.util.List;
 public class ClassesController {
 
     @Autowired
-    private IEnrollmentService EnrollmentService;
+    private IEnrollmentService enrollmentService;
 
     @Autowired
-    private IClassesService ClassesService;
+    private IClassesService classesService;
 
-    @RequestMapping(value = "/classes", method = RequestMethod.GET)
-    public String showClasses(Model model)
+    @Autowired
+    private IUserService userService;
+
+    @RequestMapping(value = "/student/classes", method = RequestMethod.GET)
+    public String showStudentClasses(Model model)
     {
         AuthManager am = AuthManager.getInstance();
         User user = am.getLoggedInUser();
 
-        List<Enrollment> e = EnrollmentService.findByUserId(user.getUserId());
+        List<Enrollment> e = enrollmentService.findByUserId(user.getUserId());
         System.out.println("ESIZE: "+ e.size());
+
         List<Classes> c = new ArrayList<>();
+        List<String> courseCode = new ArrayList<>();
+        List<String> section = new ArrayList<>();
+        List<String> professor = new ArrayList<>();
 
         for(int i = 0; i < e.size(); i++) {
             c.add(e.get(i).getCourseCode());
-            System.out.println("C: " + c.get(i).getCourseName());
+
+            String cc = e.get(i).getCourseCode().getCourseCode();
+
+            int courseCodeIndex = cc.indexOf("_");
+            int sectionIndex = cc.indexOf("_", courseCodeIndex+1);
+
+            courseCode.add(cc.substring(0, courseCodeIndex));
+            section.add(cc.substring(courseCodeIndex+1, sectionIndex));
+
+            User teacher = e.get(i).getCourseCode().getTeacherId();
+
+            String teacherName = null;
+            if(teacher.getFirstName() != null) {
+                teacherName = teacher.getFirstName();
+            }
+            if(teacher.getMiddleName() != null) {
+                teacherName += " " + teacher.getMiddleName();
+            }
+            if(teacher.getLastName() != null) {
+                teacherName += " " + teacher.getLastName();
+            }
+
+            professor.add(teacherName);
         }
 
         model.addAttribute("classes", c);
+        model.addAttribute("courseCode", courseCode);
+        model.addAttribute("section", section);
+        model.addAttribute("professor", professor);
 
-        return "classes";
+        return "studentClasses";
+    }
+
+    @RequestMapping(value = "/instructor/classes", method = RequestMethod.GET)
+    public String showInstructorClasses(Model model)
+    {
+        AuthManager am = AuthManager.getInstance();
+        User user = am.getLoggedInUser();
+
+        List<Classes> c = classesService.getClassesByTeacherId(user.getUserId());
+        System.out.println("CSIZE: "+ c.size());
+
+        List<String> courseCode = new ArrayList<>();
+        List<String> section = new ArrayList<>();
+        List<String> professor = new ArrayList<>();
+
+        for(int i = 0; i < c.size(); i++) {
+
+            String cc = c.get(i).getCourseCode();
+
+            int courseCodeIndex = cc.indexOf("_");
+            int sectionIndex = cc.indexOf("_", courseCodeIndex+1);
+
+            courseCode.add(cc.substring(0, courseCodeIndex));
+            section.add(cc.substring(courseCodeIndex+1, sectionIndex));
+
+            User teacher = c.get(i).getTeacherId();
+
+            String teacherName = null;
+            if(teacher.getFirstName() != null) {
+                teacherName = teacher.getFirstName();
+            }
+            if(teacher.getMiddleName() != null) {
+                teacherName += " " + teacher.getMiddleName();
+            }
+            if(teacher.getLastName() != null) {
+                teacherName += " " + teacher.getLastName();
+            }
+
+            professor.add(teacherName);
+        }
+
+        model.addAttribute("classes", c);
+        model.addAttribute("courseCode", courseCode);
+        model.addAttribute("section", section);
+        model.addAttribute("professor", professor);
+
+        return "instructorClasses";
     }
 }

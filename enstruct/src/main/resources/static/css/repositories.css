@@ -10,22 +10,29 @@
 }
 
 .card-title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 1.4vw;
     display: inline-block;
 }
 
-.lancpp {
-    color:blue;
+.sec {
     border: 1px solid #DACECD;
     background-color: white;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 75px 75px;
+    color: black;
 }
 
 .card-text {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     font-size: 1.2vw;
 }
 
+.dot {
+    height: 1vw;
+    width: 1vw;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block;
+}

@@ -1,6 +1,7 @@
 .card {
     border-radius: 5px;
     margin-bottom: 1.2vw;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -9,29 +10,22 @@
 }
 
 .card-title {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 1.4vw;
     display: inline-block;
 }
 
-.sec {
+.lancpp {
+    color:blue;
     border: 1px solid #DACECD;
     background-color: white;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 75px 75px;
-    color: black;
 }
 
 .card-text {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-size: 1.2vw;
 }
 
-.dot {
-    height: 1vw;
-    width: 1vw;
-    background-color: blue;
-    border-radius: 50%;
-    display: inline-block;
-}
