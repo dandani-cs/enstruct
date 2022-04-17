@@ -1,7 +1,7 @@
 package com.example.enstruct.controller;
 
 import com.example.enstruct.model.Assignment;
-import com.example.enstruct.model.Course;
+import com.example.enstruct.model.Classes;
 import com.example.enstruct.model.Submission;
 import com.example.enstruct.service.IAssignmentService;
 import com.example.enstruct.service.ISubmissionService;
@@ -28,13 +28,12 @@ public class AssignmentController {
         return "addAssignment";
     }
 
-    // TODO: to change course to course code;
     @PostMapping("/assignment/add")
     public String addAssignmentSubmit(@ModelAttribute Assignment assignment, Model model) {
         model.addAttribute("assignment", assignment);
-        Course course = assignment.getCourse();
+        Classes course = assignment.getCourse();
         assignmentService.addAssignment(assignment);
-        return "redirect:/assignments/" + course;
+        return "redirect:/assignments/" + course.getCourseCode();
     }
 
     @GetMapping("/assignment/{id}")
@@ -57,23 +56,21 @@ public class AssignmentController {
         return mv;
     }
 
-    // TODO: to change course to course code;
     @PostMapping("/assignment/{id}/edit")
     public ModelAndView updateAssignmentSubmit(@PathVariable long id, @ModelAttribute Assignment assignment, Model model) {
         model.addAttribute("assignment", assignment);
-        Course course = assignment.getCourse();
+        Classes course = assignment.getCourse();
         assignmentService.addAssignment(assignment);
-        return new ModelAndView("redirect:/assignments/" + course);
+        return new ModelAndView("redirect:/assignments/" + course.getCourseCode());
 
     }
 
-    // TODO: to change course to course code;
     @PostMapping("/assignment/{id}/delete")
     public ModelAndView deleteAssignment(@PathVariable long id) {
         Assignment assignment = assignmentService.getAssignment(id);
-        Course courseCode = assignment.getCourse();
+        Classes course = assignment.getCourse();
         assignmentService.deleteAssignment(id);
-        return new ModelAndView("redirect:/course/" + courseCode);
+        return new ModelAndView("redirect:/course/" + course.getCourseCode());
     }
 
     // get all submissions in assignment
