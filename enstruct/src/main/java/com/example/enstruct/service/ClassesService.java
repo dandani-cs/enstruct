@@ -28,6 +28,11 @@ public class ClassesService implements IClassesService{
     }
 
     @Override
+    public List<Classes> getClassesByTeacherId(Long teacherId) {
+        return (List<Classes>) repository.getClassesByTeacherId(teacherId);
+    }
+
+    @Override
     public Classes addClass(Classes clas) {
         return repository.save(clas);
     }
