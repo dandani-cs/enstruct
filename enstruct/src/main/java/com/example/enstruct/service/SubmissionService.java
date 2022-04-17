@@ -2,6 +2,7 @@ package com.example.enstruct.service;
 
 import com.example.enstruct.model.Submission;
 import com.example.enstruct.repository.SubmissionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class SubmissionService implements ISubmissionService {
+    @Autowired
     private SubmissionRepository repository;
 
     @Override

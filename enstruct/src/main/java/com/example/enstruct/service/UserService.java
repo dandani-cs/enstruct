@@ -17,6 +17,12 @@ public class UserService implements IUserService {
     public List<User> findAll() { return repository.findAll(); }
 
     @Override
+    public User findByUsername(String username) {
+        Optional opt = repository.findByUserName(username);
+        return opt.isEmpty() ? null : (User) opt.get();
+    }
+
+    @Override
     public User addUser(User user) { return repository.save(user); }
 
     @Override

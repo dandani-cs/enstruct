@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface AssignmentRepository extends CrudRepository<Assignment, Long> {
     // for students to know upcoming assignments
-    @Query(value = "SELECT * FROM Assignment WHERE courseCode = ?1 AND DATE(deadline) > CURDATE()", nativeQuery = true)
-    List<Assignment> getPendingAssignmentsByCourseCode(long courseCode);
+    @Query(value = "SELECT * FROM Assignments WHERE course_code = ?1 AND DATE(deadline) > CURDATE()", nativeQuery = true)
+    List<Assignment> getPendingAssignmentsByCourseCode(String courseCode);
 
     // for instructor's view of assignments
-    @Query(value = "SELECT * FROM Assignment WHERE courseCode = ?1", nativeQuery = true)
-    List<Assignment> getAssignmentsInCourse(long courseCode);
+    @Query(value = "SELECT * FROM Assignments WHERE course_code = ?1", nativeQuery = true)
+    List<Assignment> getAssignmentsInCourse(String courseCode);
 
 }
