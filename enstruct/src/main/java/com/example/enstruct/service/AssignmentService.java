@@ -37,12 +37,12 @@ public class AssignmentService implements IAssignmentService{
     }
 
     @Override
-    public List<Assignment> getPendingAssignmentsByCourseCode(long courseCode) {
+    public List<Assignment> getPendingAssignmentsByCourseCode(String courseCode) {
         return repository.getPendingAssignmentsByCourseCode(courseCode);
     }
 
     @Override
-    public List<Assignment> getAssignmentsInCourse(long courseCode) {
+    public List<Assignment> getAssignmentsInCourse(String courseCode) {
         return repository.getAssignmentsInCourse(courseCode);
     }
 }

@@ -1,0 +1,108 @@
+.borders {
+    border: 2px solid #DFDFDF;
+    display: flex;
+    flex-direction: row;
+}
+
+.studname {
+    margin-left: 12px;
+    margin-right: 12px;
+    border-bottom: 0;
+}
+
+.arrows {
+    font-size: 1.8vw;
+    display: inline;
+    cursor: pointer;
+}
+
+.selectholder {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    display: inline;
+    width: auto;
+    font-size: 1.4vw;
+    border: none;
+    text-align: center;
+    flex-grow: 1;
+    font-weight: bold;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+
+select:hover {
+    color: #A93226;
+}
+
+select:focus {
+    outline: none;
+}
+
+option {
+    font-size: 1.4vw;
+    color: black;
+}
+
+.iframe {
+    margin: 0px;
+    padding: 0px;
+    background-color: red;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.exer {
+    width:100%;
+    flex-grow: 1;
+    display:flex;
+}
+
+.ideSide {
+    flex-grow: 1;
+}
+
+.scoreSide {
+    width: 18vw;
+    border-left: 2px solid #DFDFDF;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4vw;
+    font-weight: bold;
+    padding: 1vw;
+}
+
+span {
+    display: inline-block;
+}
+
+input{
+    display: inline-block;
+    border: 2px solid #DFDFDF;
+    width: 11vw;
+    border-radius: 8px;
+    text-align: right;
+}
+
+input:focus {
+    outline: none;
+    text-align: right;
+}
+
+.save {
+    background-color: #A93226;
+    color: white;
+    padding: 0.5vw 1vw;
+    border-radius: 25px;
+    text-align: center;
+    border: none;
+}
