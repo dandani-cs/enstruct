@@ -19,7 +19,7 @@ public class UserService implements IUserService {
     @Override
     public User findByUsername(String username) {
         Optional opt = repository.findByUserName(username);
-        return opt.isEmpty() ? null : (User) opt.get();
+        return !opt.isPresent() ? null : (User) opt.get();
     }
 
     @Override
