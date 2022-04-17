@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -20,9 +21,9 @@ public class Assignment {
     private String instruction;
     private int maxScore;
 
-    private Date deadline;
-    private Date availabilityStart;
-    private Date availabilityEnd;
+    private LocalDate deadline;
+    private LocalDate availabilityStart;
+    private LocalDate availabilityEnd;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"assignments", "hibernateLazyInitializer"})
@@ -72,27 +73,27 @@ public class Assignment {
         this.maxScore = maxScore;
     }
 
-    public Date getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
-    public Date getAvailabilityStart() {
+    public LocalDate getAvailabilityStart() {
         return availabilityStart;
     }
 
-    public void setAvailabilityStart(Date availabilityStart) {
+    public void setAvailabilityStart(LocalDate availabilityStart) {
         this.availabilityStart = availabilityStart;
     }
 
-    public Date getAvailabilityEnd() {
+    public LocalDate getAvailabilityEnd() {
         return availabilityEnd;
     }
 
-    public void setAvailabilityEnd(Date availabilityEnd) {
+    public void setAvailabilityEnd(LocalDate availabilityEnd) {
         this.availabilityEnd = availabilityEnd;
     }
 

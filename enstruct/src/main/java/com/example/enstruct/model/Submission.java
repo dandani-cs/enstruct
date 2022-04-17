@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,7 +16,7 @@ public class Submission {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long submissionId;
 
-    private Date submissionDate;
+    private LocalDate submissionDate;
     private Double grade;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -54,11 +55,11 @@ public class Submission {
         this.submissionId = submissionId;
     }
 
-    public Date getSubmissionDate() {
+    public LocalDate getSubmissionDate() {
         return submissionDate;
     }
 
-    public void setSubmissionDate(Date submissionDate) {
+    public void setSubmissionDate(LocalDate submissionDate) {
         this.submissionDate = submissionDate;
     }
 
