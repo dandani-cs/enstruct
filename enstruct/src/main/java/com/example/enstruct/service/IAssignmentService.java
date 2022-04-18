@@ -11,6 +11,7 @@ public interface IAssignmentService {
     Assignment updateAssignment(Assignment assignment);
     void deleteAssignment(Long assignmentId);
 
+    List<Assignment> getAllAssignments();
     List<Assignment> getPendingAssignmentsByCourseCode(String courseCode);
     List<Assignment> getAssignmentsInCourse(String courseCode);
 }

@@ -1,6 +1,10 @@
 package com.example.enstruct.controller;
 
+import com.example.enstruct.model.Assignment;
+import com.example.enstruct.model.Classes;
 import com.example.enstruct.model.User;
+import com.example.enstruct.service.IAssignmentService;
+import com.example.enstruct.service.IClassesService;
 import com.example.enstruct.service.IUserService;
 import com.example.enstruct.util.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +16,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserAuthController {
     @Autowired
     private IUserService service;
+
+    @Autowired
+    private IAssignmentService assignmentService;
+
+    @Autowired
+    private IClassesService classesService;
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String showStudentDashboard(Model model)
@@ -35,12 +47,26 @@ public class UserAuthController {
     public String showInstructorDashboard(Model model)
     {
         boolean is_not_logged_in = AuthManager.getInstance().getLoggedInUser() == null;
-        boolean has_invalid_priv = !AuthManager.getInstance().getLoggedInUser().getTeacher();
 
-        if(is_not_logged_in || has_invalid_priv)
+
+        if(is_not_logged_in) {
             return "redirect:/login";
+        } else {
+            boolean has_invalid_priv = !AuthManager.getInstance().getLoggedInUser().getTeacher();
+            if (has_invalid_priv)
+                return "redirect:/login";
+        }
 
-        return "instructorDashboard";
+        List<Assignment> agenda = assignmentService.getAllAssignments();
+        List<String> courses = new ArrayList<>();
+        for (Assignment a : agenda) {
+            courses.add(a.getCourse().getCourseName());
+        }
+
+        model.addAttribute("agenda", agenda);
+        model.addAttribute("courses", courses);
+
+        return "instructorHome";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
