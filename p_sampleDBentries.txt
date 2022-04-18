@@ -1,6 +1,6 @@
-insert into users (user_id, first_name, last_name, user_name, password, is_teacher) values (0, "Ninong", "Ry", "qwe", "qwe", 0);
-insert into users (user_id, first_name, middle_name, last_name, user_name, password, is_teacher) values (1, "Mr", "Teddy", "Bean", "zxc", "zxc", 0);
-insert into users (user_id, first_name, last_name, user_name, password, is_teacher) values (2, "Professor", "X", "asd", "asd", 1);
+insert into users (user_id, email, first_name, last_name, user_name, password, is_teacher) values (0, "ninongry@gmail.com", "Ninong", "Ry", "qwe", "qwe", 0);
+insert into users (user_id, email, first_name, middle_name, last_name, user_name, password, is_teacher) values (1, "mrteddybean@gmail.com", "Mr", "Teddy", "Bean", "zxc", "zxc", 0);
+insert into users (user_id, email, first_name, last_name, user_name, password, is_teacher) values (2, "professorx@gmail.com", "Professor", "X", "asd", "asd", 1);
 
 insert into classes (course_code, course_name, enabled, user_id) values ("CS126L_BM1_2Q2122", "Computer Programming 1 Laboratory", 1, 2);
 insert into classes (course_code, course_name, enabled, user_id) values ("CS126L_BM2_2Q2122", "Computer Programming 1 Laboratory", 1, 2);
