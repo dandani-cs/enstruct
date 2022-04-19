@@ -10,8 +10,8 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="master.css">
-        <link rel="stylesheet" href="css/announcement.css">
+        <link rel="stylesheet" href="/css/master.css">
+        <link rel="stylesheet" href="/css/announcement.css">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
             <div class="col-sm-3 nav-col d-none d-lg-block">
                 <h1 class="title text-center">E-NSTRUCT</h1>
                 <div class="profile-mini text-center">
-                    <img src="person-pic.jpg" class="rounded mx-auto d-block profile-pic">
+                    <img src="/img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
                     <p id="user-fullname">ANDERSON, TIMOTHY</p>
                     <p id="user-role">STUDENT</p>
                 </div>
@@ -44,6 +44,9 @@
                     <li class="nav-item">
                         <a class="nav-link"><i class="bi bi-person-badge-fill"></i>Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link"><i class="bi bi-megaphone-fill"></i>Announcements</a>
+                    </li>
             
                     <li class="nav-item">
                         <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
@@ -62,36 +65,23 @@
                     <div class="row row-cols-lg-2 row-cols-md-2">
                        
                         <div class="col-lg-8 col-md-12 h-100 mt-3 ">
-                            <!-- Announcements -->
-                            <div class="announcement">
-                                <div class="d-flex flex-row align-items-end justify-content-between mb-3">
-                                    <div class="w-50">
-                                        <p class="fs-4 mb-0" style="overflow: hidden; text-overflow: ellipsis;">Announcement title</p>
-                                        <p class="small mb-0">IT194 - BM1</p>
+                            <#list announcements as announce>
+                                <div class="announcement">
+                                    <p class="fs-4 mb-0" style="overflow: hidden; text-overflow: ellipsis;">Announcement for ${announce.courseCode.courseName}</p>
+                                    <div class="d-flex flex-row align-items-start justify-content-between mb-0">
+                                        <div class="w-50">
+                                            <p class="small mb-0">${announce.courseCode.courseCode}</p>
+                                        </div>
+
+                                        <div class="text-end">
+                                            <p class="small mb-0">Prof. ${announce.courseCode.teacherId.firstName} ${announce.courseCode.teacherId.lastName} </p>
+                                            <p class="small mb-0">Posted on: ${announce.date}</p>
+                                        </div>
                                     </div>
-                            
-                                    <div class="text-end">
-                                        <p class="small mb-0">Prof. Juan Dela Cruz</p>
-                                        <p class="small mb-0">Posted on: April 01, 2022 6:32 AM</p>
-                                    </div>
+                                    <p class="announcement-content">${announce.text}</p>
                                 </div>
-                                <p class="announcement-content">This is the content of the announcement</p>
-                            </div>
-                            <div class="announcement">
-                                <div class="d-flex flex-row align-items-end justify-content-between mb-3">
-                                    <div class="w-50">
-                                        <p class="fs-4 mb-0" style="overflow: hidden; text-overflow: ellipsis;">Announcement title</p>
-                                        <p class="small mb-0">IT194 - BM1</p>
-                                    </div>
-                            
-                                    <div class="text-end">
-                                        <p class="small mb-0">Prof. Juan Dela Cruz</p>
-                                        <p class="small mb-0">Posted on: April 01, 2022 6:32 AM</p>
-                                    </div>
-                                </div>
-                                <p class="announcement-content">This is the content of the announcement</p>
-                            </div>
-                            
+                            </#list>
+
 
                             <!-- Calendar -->
                             <div class="" id="calendar-container">
