@@ -1,5 +1,6 @@
 package com.example.enstruct.service;
 
+import com.example.enstruct.model.Attachment;
 import com.example.enstruct.model.Submission;
 import com.example.enstruct.repository.SubmissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,14 @@ public class SubmissionService implements ISubmissionService {
     @Override
     public List<Submission> getAllSubmissionsOfStudent(long studentNumber) {
         return repository.getAllSubmissionsOfStudent(studentNumber);
+    }
+
+    @Override
+    public Submission getLatestSubmission() {
+        Optional optional = repository.getLatestSubmission();
+        if(!optional.isPresent())
+            return null;
+        else
+            return (Submission) optional.get();
     }
 }
