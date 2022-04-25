@@ -82,81 +82,48 @@
                                 </div>
                             </#list>
 
+                            <table class="table">
+
+                            </table>
 
                             <!-- Calendar -->
                             <div class="" id="calendar-container">
                                 <h5 class="mb-3">Calendar </h5>
-                                <div class="row text-center">
-                                    <div class="col"><p class="small date-num">Mon</p></div> 
-                                    <div class="col"><p class="small date-num">Tue</p></div> 
-                                    <div class="col"><p class="small date-num">Wed</p></div> 
-                                    <div class="col"><p class="small date-num">Thu</p></div> 
-                                    <div class="col"><p class="small date-num">Fri</p></div> 
-                                    <div class="col"><p class="small date-num">Sat</p></div> 
-                                    <div class="col"><p class="small date-num">Sun</p></div> 
-                                </div>
+                                <div class="container">
+                                    <div class="row text-center">
+                                        <div class="col"><p class="small date-num">Sun</p></div>
+                                        <div class="col"><p class="small date-num">Mon</p></div>
+                                        <div class="col"><p class="small date-num">Tue</p></div>
+                                        <div class="col"><p class="small date-num">Wed</p></div>
+                                        <div class="col"><p class="small date-num">Thu</p></div>
+                                        <div class="col"><p class="small date-num">Fri</p></div>
+                                        <div class="col"><p class="small date-num">Sat</p></div>
+                                    </div>
+                                    <#list calendar_table as row>
+                                    <div class="row">
+                                        <#list row as days>
+                                        <div class="col date-cell border" style="width: 1rem;">
+                                            <#assign day_idx = row?index * 7 + days?index + 1>
+                                            <#if day_idx gt weekday_start - 1 && day_idx <= days_in_mo + weekday_start - 1>
+                                                <p class="small date-num text-muted text-end">${day_idx - weekday_start + 1}</p>
+                                            </#if>
 
-                                <!-- Date -->
-                                <div class="row">
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">1</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">2</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">3</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">4</p></div> 
-                                    <div class="col date-cell border">
-                                        <p class="small date-num text-muted text-end">5</p>
-                                        <div class="date-announcement">
-                                            <div class="fw-bold">
-                                                <small>Exercise #2</small>
-                                            </div>
-                                            <div class="fw-light">
-                                                <small>IT194-BM6</small>
-                                            </div>
+                                            <#if days?has_content>
+                                                <#list days as assignment>
+                                                <div class="date-announcement mb-1">
+                                                    <div class="fw-light" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                        <small>${assignment.name}</small>
+                                                    </div>
+                                                </div>
+                                                </#list>
+                                            </#if>
+
                                         </div>
-                                    </div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">6</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">7</p></div> 
-                                </div>
-                                <div class="row">
-                                    <div class="col date-cell border">
-                                        <p class="small date-num text-muted text-end">1</p>
-                                        <div class="date-announcement">
-                                            <div class="fw-bold">
-                                                <small>Exercise #2</small>
-                                            </div>
-                                        </div>
-                                        <div class="date-announcement">
-                                            <div class="fw-bold">
-                                                <small>Exercise #2</small>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">2</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">3</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">4</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">5</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">6</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">7</p></div> 
-                                </div>
-                                <div class="row">
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">1</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">2</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">3</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">4</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">5</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">6</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">7</p></div> 
-                                </div>
-                                <div class="row">
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">1</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">2</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">3</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">4</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">5</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">6</p></div> 
-                                    <div class="col date-cell border"><p class="small date-num text-muted text-end">7</p></div> 
+                                        </#list>
+                                    </div>
+                                    </#list>
                                 </div>
                             </div>
-
                         </div>
                         
                         <!-- Calendar -->

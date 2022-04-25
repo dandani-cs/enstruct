@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -18,4 +19,7 @@ public interface AssignmentRepository extends CrudRepository<Assignment, Long> {
     @Query(value = "SELECT * FROM Assignments WHERE course_code = ?1", nativeQuery = true)
     List<Assignment> getAssignmentsInCourse(String courseCode);
 
+    @Query(value = "SELECT * FROM Assignments WHERE DATE(deadline) >= ?1 AND DATE(deadline) <= ?2", nativeQuery = true)
+    List<Assignment> getAllAssignmentsWithinDates(Date from, Date to);
+    List<Assignment> findAll();
 }
