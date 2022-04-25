@@ -4,14 +4,12 @@ import com.example.enstruct.model.Assignment;
 import com.example.enstruct.model.Classes;
 import com.example.enstruct.model.Submission;
 import com.example.enstruct.service.IAssignmentService;
+import com.example.enstruct.service.IClassesService;
 import com.example.enstruct.service.ISubmissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -20,20 +18,26 @@ import java.util.List;
 public class AssignmentController {
     @Autowired
     private IAssignmentService assignmentService;
+
+    @Autowired
     private ISubmissionService submissionService;
 
-    @GetMapping("/assignment/add")
+    @Autowired
+    private IClassesService classesService;
+
+    @GetMapping("/assignment-add")
     public String addAssignment(Model model) {
         model.addAttribute("assignment", new Assignment());
+        model.addAttribute("courses", classesService.getClasses());
         return "addAssignment";
     }
 
-    @PostMapping("/assignment/add")
+    @PostMapping("/assignment-add")
     public String addAssignmentSubmit(@ModelAttribute Assignment assignment, Model model) {
         model.addAttribute("assignment", assignment);
         Classes course = assignment.getCourse();
         assignmentService.addAssignment(assignment);
-        return "redirect:/assignments/" + course.getCourseCode();
+        return "redirect:/assignments/";
     }
 
     @GetMapping("/assignment/{id}")
