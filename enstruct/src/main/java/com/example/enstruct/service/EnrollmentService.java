@@ -34,12 +34,12 @@ public class EnrollmentService implements IEnrollmentService {
 
     @Override
     public List<Enrollment> findByCourseId(long courseId) {
-        return repository.findByClassesCourseCode(courseId);
+        return repository.findByCourseCodeCourseCode(courseId);
     }
 
     @Override
     public Enrollment findByCourseAndUserId(long userId, long courseId) {
-        Optional opt = repository.findByUserUserIdAndClassesCourseCode(userId, courseId);
+        Optional opt = repository.findByUserUserIdAndCourseCodeCourseCode(userId, courseId);
         return !opt.isPresent() ? null : (Enrollment) opt.get();
     }
 

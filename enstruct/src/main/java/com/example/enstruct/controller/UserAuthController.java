@@ -1,20 +1,23 @@
 package com.example.enstruct.controller;
 
+
 import com.example.enstruct.model.Assignment;
 import com.example.enstruct.model.Classes;
 import com.example.enstruct.model.User;
 import com.example.enstruct.service.IAssignmentService;
 import com.example.enstruct.service.IClassesService;
+import com.example.enstruct.model.Enrollment;
+import com.example.enstruct.model.User;
+import com.example.enstruct.service.IClassesService;
+import com.example.enstruct.service.IEnrollmentService;
 import com.example.enstruct.service.IUserService;
 import com.example.enstruct.util.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,9 @@ public class UserAuthController {
     @Autowired
     private IClassesService classesService;
 
+    @Autowired
+    private IEnrollmentService enrollmentService;
+
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String showStudentDashboard(Model model)
     {
@@ -41,6 +47,28 @@ public class UserAuthController {
             return "redirect:/login";
 
         return "studentDashboard";
+    }
+
+    @RequestMapping(value = "/student/profile", method = RequestMethod.GET)
+    public ModelAndView showStudentProfile(ModelMap model)
+    {
+        User curr_logged_in = AuthManager.getInstance().getLoggedInUser();
+
+        if(curr_logged_in == null)
+        {
+            return new ModelAndView("redirect:/login", model);
+        }
+        List<Enrollment> courses_enrolled = enrollmentService.findByUserId(curr_logged_in.getUserId());
+
+        System.out.println("COURSES ENROLLED!");
+        for(Enrollment e : courses_enrolled) {
+            System.out.println(e.getCourseCode().getCourseName());
+        }
+
+        model.addAttribute("enrollments", courses_enrolled);
+        model.addAttribute("user", curr_logged_in);
+
+        return new ModelAndView("studentProfile", model);
     }
 
     @RequestMapping(value = "/instructor", method = RequestMethod.GET)
@@ -81,7 +109,7 @@ public class UserAuthController {
     public ModelAndView authenticateUser(@ModelAttribute User user, ModelMap model)
     {
         User existing_entry = service.findByUsername(user.getUserName());
-        // TODO:
+        // TODO: ?
         if(existing_entry == null)
         {
             model.addAttribute("error", "nonexistent_user");

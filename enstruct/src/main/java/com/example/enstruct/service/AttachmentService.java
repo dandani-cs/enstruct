@@ -5,6 +5,7 @@ import com.example.enstruct.repository.AttachmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,5 +41,14 @@ public class AttachmentService implements IAttachmentService {
     @Override
     public void deleteAttachment(Long attachment_id) {
         repository.deleteById(attachment_id);
+    }
+
+    @Override
+    public Attachment getInsertedAttachment(String filename, Long userId) {
+        Optional optional = repository.getInsertedAttachment(filename, userId);
+        if(!optional.isPresent())
+            return null;
+        else
+            return (Attachment) optional.get();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.enstruct.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,13 +12,14 @@ public class Enrollment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long enrollmentId;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Classes classes;
+    @JoinColumn(name = "courseCode")
+    private Classes courseCode;
 
     public Enrollment() {
     }
@@ -25,7 +27,7 @@ public class Enrollment {
     public Enrollment(Long enrollmentId, User user, Classes classes) {
         this.enrollmentId = enrollmentId;
         this.user = user;
-        this.classes = classes;
+        this.courseCode = classes;
     }
 
     public Long getEnrollmentId() {
@@ -45,10 +47,10 @@ public class Enrollment {
     }
 
     public Classes getCourseCode() {
-        return classes;
+        return courseCode;
     }
 
     public void setCourseCode(Classes classesCode) {
-        this.classes = classesCode;
+        this.courseCode = classesCode;
     }
 }

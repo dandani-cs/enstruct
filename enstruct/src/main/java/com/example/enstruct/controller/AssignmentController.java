@@ -1,18 +1,23 @@
 package com.example.enstruct.controller;
 
-import com.example.enstruct.model.Assignment;
-import com.example.enstruct.model.Classes;
-import com.example.enstruct.model.Submission;
+import com.example.enstruct.model.*;
 import com.example.enstruct.service.IAssignmentService;
 import com.example.enstruct.service.IClassesService;
+import com.example.enstruct.service.IAttachmentService;
 import com.example.enstruct.service.ISubmissionService;
+import com.example.enstruct.service.IUserService;
+import com.example.enstruct.util.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AssignmentController {
@@ -24,6 +29,12 @@ public class AssignmentController {
 
     @Autowired
     private IClassesService classesService;
+
+    @Autowired
+    private IAttachmentService attachmentService;
+
+    @Autowired
+    private IUserService userService;
 
     @GetMapping("/assignment-add")
     public String addAssignment(Model model) {
@@ -96,6 +107,59 @@ public class AssignmentController {
         mv.addObject("submission", submission);
 
         return mv;
+    }
+
+
+    //STUDENT SIDE
+    @RequestMapping(value = "/student/assignment/{assignmentId}", method = RequestMethod.GET)
+    public String showStudentAssignment(Model model, @PathVariable long assignmentId) {
+        System.out.println("IN HERE");
+        Assignment a = assignmentService.getAssignment(assignmentId);
+
+
+        model.addAttribute("instructions", a.getInstruction());
+
+        LocalDate d = a.getDeadline_date();
+        DateFormat df = DateFormat.getDateInstance();
+        String deadline = df.format(d);
+        System.out.println("DEADLINE: " + deadline);
+        model.addAttribute("deadline", a.getDeadline_date());
+        model.addAttribute("maxScore", a.getMaxScore());
+        model.addAttribute("assignmentId", assignmentId);
+        return "studentAssignment";
+    }
+
+    @RequestMapping(value = "/student/assignment/{assignmentId}/submit/{filename}", method = RequestMethod.POST)
+    public ModelAndView showStudentAssignment(Model model, @PathVariable long assignmentId, @PathVariable String filename) {
+
+        AuthManager am = AuthManager.getInstance();
+        User user = am.getLoggedInUser();
+
+        User u = userService.getUser(user.getUserId());
+        Assignment assignment = assignmentService.getAssignment(assignmentId);
+        Submission s = new Submission();
+        Attachment a = new Attachment();
+        a.setFilename(filename);
+        a.setOwnerId(u);
+
+
+        attachmentService.addAttachment(a);
+
+
+        a = attachmentService.getInsertedAttachment(a.getFilename(), user.getUserId());
+
+
+        s.setAssignmentId(assignment);
+        s.setSubmissionDate(new Date());
+        s.setCourse(assignment.getCourse());
+        s.setAttachment(a);
+        s.setStudentNumber(u);
+
+        submissionService.addSubmission(s);
+
+        s = submissionService.getLatestSubmission();
+
+        return new ModelAndView("redirect:/student/submissions/" + s.getSubmissionId(), (Map<String, ?>) model);
     }
 
 }

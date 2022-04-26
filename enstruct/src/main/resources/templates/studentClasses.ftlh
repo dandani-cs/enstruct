@@ -60,16 +60,20 @@
                         disabled
                     </#if>
                 ">
-                  <div class="card-body">
+                    <div class="card-body">
+                  <div>
                     <h5 class="card-title lancpp" >C++ </h5>
                     &nbsp;
                     <h5 class="card-title" >${courseCode[c?index]}</h5>
-                    <p class="card-text">${c.courseName}</p>
+                    </div>
+                    <div style="display:flex; flex-direction: column; height: 100%;">
+                    <p class="card-text" style="flex-grow:1">${c.courseName}</p>
                     <p class="card-text">${section[c?index]}
                         <#if professor[c?index]??>
                             &middot; ${professor[c?index]}
                         </#if>
                     </p>
+                    </div>
                   </div>
                 </div>
               </div>

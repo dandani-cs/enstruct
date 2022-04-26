@@ -5,6 +5,7 @@ import com.example.enstruct.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,4 +37,9 @@ public class UserService implements IUserService {
 
     @Override
     public void deleteUser(User user) { repository.delete(user); }
+
+    @Override
+    public List<User> findAllStudents() {
+        return repository.findAllStudents();
+    }
 }

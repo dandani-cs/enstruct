@@ -11,14 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ClassesController {
@@ -126,5 +124,58 @@ public class ClassesController {
         model.addAttribute("professor", professor);
 
         return "instructorClasses";
+    }
+
+    @RequestMapping(value = "/instructor/classes/addClass", method = RequestMethod.GET)
+    public String addClass(Model model)
+    {
+        AuthManager am = AuthManager.getInstance();
+        User user = am.getLoggedInUser();
+
+        List<Classes> c = classesService.getClasses();
+        List<User> u = userService.findAllStudents();
+
+
+        model.addAttribute("classes", c);
+        model.addAttribute("students", u);
+
+        return "instructorAddClass";
+    }
+
+    @RequestMapping(value = "/instructor/classes/addClass/{courseCode}/{courseName}/{enabled}/{students}", method = RequestMethod.POST)
+    public ModelAndView addClass(Model model, @PathVariable String courseCode, @PathVariable String courseName, @PathVariable Boolean enabled, @PathVariable String students)
+    {
+        AuthManager am = AuthManager.getInstance();
+        User user = am.getLoggedInUser();
+
+        Classes c = new Classes();
+        c.setCourseCode(courseCode);
+        c.setCourseName(courseName);
+        c.setEnabled(enabled);
+        c.setTeacherId(user);
+
+        classesService.addClass(c);
+
+        System.out.println("STUDENTS: " + students);
+
+        List<Long> enrollees = new ArrayList<>();
+
+        if(!students.equals("-1")) {
+            try{
+                while(true) {
+                    enrollees.add(Long.valueOf(students.substring(0, students.indexOf("."))));
+                    students = students.substring(students.indexOf(".")+1);
+                }
+            } catch(Exception e) {}
+        }
+
+        for(int i = 0; i < enrollees.size(); i++) {
+            Enrollment e = new Enrollment();
+            e.setCourseCode(c);
+            e.setUser(userService.getUser(enrollees.get(i)));
+            enrollmentService.addEnrollment(e);
+        }
+
+        return new ModelAndView("redirect:/instructor/classes", (Map<String, ?>) model);
     }
 }

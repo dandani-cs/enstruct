@@ -1,7 +1,16 @@
 .card {
     border-radius: 5px;
-    margin-bottom: 1.2vw;
+    height: 100%;
     cursor: pointer;
+}
+
+.col-3 {
+    padding-bottom: 1.2vw;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -29,3 +38,59 @@
     font-size: 1.2vw;
 }
 
+label {
+    font-size: 1.2vw;
+    display: block;
+}
+
+input {
+    width: 100%;
+    font-size: 1.2vw;
+    border: 2px solid #DFDFDF;
+    border-radius: 15px;
+    outline: none;
+}
+
+.searchInput {
+    height:fit-content;
+}
+
+.pinputError {
+    display: none;
+    padding-top: 10px;
+    font-size: 1.2vw;
+    color: red;
+    margin-left: 10px;
+}
+
+.pautoFilled {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+form {
+    display:flex;
+     flex-direction: column;
+     height: 100%;
+}
+
+.table {
+    height: 100%;
+}
+
+#psubmit {
+    background-color: #A93226;
+    color: white;
+    padding: 10px 0px;
+    border: none;
+}
+
+.table th, .table td {
+    text-align: center;   
+ }
+ 
+
+.checkbox {
+    height: fit-content;
+    width: fit-content;
+}

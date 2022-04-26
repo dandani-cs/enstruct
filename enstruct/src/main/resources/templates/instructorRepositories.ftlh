@@ -57,13 +57,17 @@
               <div class="col-4">
                 <div class="card" onclick="location.href='/instructor/repositories/${r.assignmentId}'">
                   <div class="card-body">
+                  <div>
                     <h5 class="card-title">${courseCode[r?index]}</h5>
                     &nbsp;
                     <h5 class="card-title sec">${section[r?index]}</h5>
+                    </div>
                     <p class="card-text">${r.name}</p>
 
+                    <div>
                     <span class="dot"></span>
-                    <span class="card-text">C++</span>
+                    <span class="card-text" style="flex-grow:0">C++</span>
+                    </div>
                   </div>
                 </div>
               </div>

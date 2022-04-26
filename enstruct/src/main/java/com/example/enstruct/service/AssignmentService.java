@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.Assign;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,11 @@ public class AssignmentService implements IAssignmentService{
     @Override
     public List<Assignment> getPendingAssignmentsByCourseCode(String courseCode) {
         return repository.getPendingAssignmentsByCourseCode(courseCode);
+    }
+
+    @Override
+    public List<Assignment> getAllAssignmentsWithinDates(Date from, Date to) {
+        return repository.getAllAssignmentsWithinDates(from, to);
     }
 
     @Override
