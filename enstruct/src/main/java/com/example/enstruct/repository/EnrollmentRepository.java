@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface EnrollmentRepository extends CrudRepository<Enrollment, Long> {
     public List<Enrollment> findAll();
     public List<Enrollment> findByUserUserId(long userId);
-    public List<Enrollment> findByClassesCourseCode(long courseId);
-    public Optional<Enrollment> findByUserUserIdAndClassesCourseCode(long userId, long courseId);
+    public List<Enrollment> findByCourseCodeCourseCode(long courseId);
+    public Optional<Enrollment> findByUserUserIdAndCourseCodeCourseCode(long userId, long courseId);
 }
