@@ -2,6 +2,9 @@ body {
   background-color: #F9EBEA;
 }
 
+.add-form {
+  padding: 50px;
+}
 
 .active {
   background-color: #A93226 !important;
