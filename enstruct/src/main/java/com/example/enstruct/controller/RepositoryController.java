@@ -155,6 +155,7 @@ public class RepositoryController {
         model.addAttribute("students", students);
         model.addAttribute("filenames", filenames);
         model.addAttribute("showAddFiles", showAddFiles);
+        model.addAttribute("assignmentId", assignmentId);
         return "studentInnerRepo";
     }
 

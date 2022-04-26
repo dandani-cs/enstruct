@@ -57,7 +57,7 @@
             <h2 style="color: #A93226; margin-bottom: 20px;">${name}</h2>
         </div>
         <#if showAddFiles == true>
-          <div class="card" style="margin-bottom: 0px; height:100%; margin-top: 58px; border-radius: 10px; background-color: #A93226; color:white; text-align: center;">
+          <div class="card" onclick="location.href='/student/assignment/${assignmentId}'" style="margin-bottom: 0px; height:100%; margin-top: 58px; border-radius: 10px; background-color: #A93226; color:white; text-align: center;">
             <h3 style="margin-bottom:0px; padding: .5vw 1vw;">add files</h3>
           </div>
         </#if>
@@ -73,8 +73,10 @@
 
                     <p class="card-text">${filenames[s?index]}</p>
 
-                    <span class="dot"></span>
-                    <span class="card-text">C++</span>
+                    <div>
+                        <span class="dot"></span>
+                        <span class="card-text">C++</span>
+                    </div>
                   </div>
                 </div>
               </div>

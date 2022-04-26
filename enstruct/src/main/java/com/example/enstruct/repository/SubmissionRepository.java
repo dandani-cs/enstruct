@@ -1,5 +1,6 @@
 package com.example.enstruct.repository;
 
+import com.example.enstruct.model.Attachment;
 import com.example.enstruct.model.Submission;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -7,6 +8,7 @@ import org.springframework.data.repository.RepositoryDefinition;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SubmissionRepository extends CrudRepository<Submission, Long> {
@@ -21,4 +23,7 @@ public interface SubmissionRepository extends CrudRepository<Submission, Long> {
     // for grade view in individual student
     @Query(value = "SELECT * FROM submissions WHERE user_id = ?1", nativeQuery = true)
     List<Submission> getAllSubmissionsOfStudent(long studentNumber);
+
+    @Query(value = "select * from submissions order by submission_date DESC limit 0,1", nativeQuery = true)
+    public Optional<Submission> getLatestSubmission();
 }

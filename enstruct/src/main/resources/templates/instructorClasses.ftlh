@@ -49,24 +49,35 @@
         </ul>
         </div>
 
-        <div class="col-sm-10 main-content">
-          <h1 class="heading">CLASSES</h1>
+      <div class="col-sm-10 main-content" >
+        <div style="display:flex; flex-direction: row;">
+        <h1 class="heading" style="display:inline-block; flex-grow: 1;">CLASSES</h1>
+        <div class="card" onclick="location.href='/instructor/classes/addClass'" style="margin-bottom: 0px; height:100%; margin-top: 45px; border-radius: 10px; background-color: #A93226; color:white; text-align: center;">
+          <h3 style="margin-bottom:0px; padding: .5vw 1vw;">add classes</h3>
+        </div>
+      </div>
           <div class="row prow" >
-          
+
             <#list classes as c>
               <div class="col-3">
                 <div class="card">
+
                   <div class="card-body">
+                  <div>
                     <h5 class="card-title lancpp" >C++ </h5>
                     &nbsp;
                     <h5 class="card-title" >${courseCode[c?index]}</h5>
-                    <p class="card-text">${c.courseName}</p>
+                    </div>
+                    <div style="display:flex; flex-direction: column;  height: 100%;">
+                    <p class="card-text" style="flex-grow:1">${c.courseName}</p>
                     <p class="card-text">${section[c?index]}
                         <#if professor[c?index]??>
                             &middot; ${professor[c?index]}
                         </#if>
                     </p>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </#list>

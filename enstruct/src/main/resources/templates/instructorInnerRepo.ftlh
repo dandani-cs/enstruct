@@ -69,8 +69,10 @@
 
                     <p class="card-text">${filenames[s?index]}</p>
 
-                    <span class="dot"></span>
-                    <span class="card-text">C++</span>
+                    <div>
+                        <span class="dot"></span>
+                        <span class="card-text">C++</span>
+                    </div>
                   </div>
                 </div>
               </div>
