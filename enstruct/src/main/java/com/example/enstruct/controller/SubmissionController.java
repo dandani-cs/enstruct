@@ -87,7 +87,7 @@ public class SubmissionController {
             }
             students.add(userName);
         }
-        String fil = "C:/Users/apmbonifacio/Documents/GitHub/enstruct/cppProgs/" + filename;
+        String fil = "C:\\Users\\dcsam\\Documents\\programming\\enstruct\\cppProgs\\" + filename;
         FileInputStream fin = new FileInputStream(fil);
         int i = 0;
         String code = "";
@@ -172,7 +172,7 @@ public class SubmissionController {
             }
             students.add(userName);
         }
-        String fil = "C:/Users/apmbonifacio/Documents/GitHub/enstruct/cppProgs/" + filename;
+        String fil = "C:\\Users\\dcsam\\Documents\\programming\\enstruct\\cppProgs\\" + filename;
         FileInputStream fin = new FileInputStream(fil);
         int i = 0;
         String code = "";
