@@ -104,6 +104,7 @@
                 <p>Availability end: <input type="date" name="availabilityEnd" class="form-control" id="availabilityEnd"></p>
               </div>
               <div class="col-sm-4">
+                <label for="attachment" class="form-label">Attach files:</label>
                 <input class="form-control" name="attachment" type="file" id="attachment">
               </div>
             </div>
