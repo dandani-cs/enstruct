@@ -14,6 +14,7 @@ public class Enrollment {
 
     @OneToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_user_id")
     private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
