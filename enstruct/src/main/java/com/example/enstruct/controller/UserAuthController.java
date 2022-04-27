@@ -124,4 +124,10 @@ public class UserAuthController {
         String dashboard_link = String.format("redirect:%s", existing_entry.getTeacher() ? "/instructor" : "/student");
         return new ModelAndView(dashboard_link, model);
     }
+
+    @RequestMapping(value = "/adduser", method = RequestMethod.GET)
+    public String addUserView(@ModelAttribute User user, Model model) {
+        model.addAttribute("user", new User());
+        return "addUser";
+    }
 }
