@@ -48,87 +48,56 @@
         </ul>
       </div>
 
-      <div class="col-sm-6 main-content">
-        <h1 class="heading">DASHBOARD</h1>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="box-info">
-              <h1 class="float-start mt-3" id="courses-enrolled">0</h1>
-              <div class="float-end float-parent align-middle">
-                <div class="float-start align-middle mt-3">
-                  <h2>COURSES</h2>
-                  <p>enrolled</p>
-                </div>
-                <div class="float-end">
-                  <img src="courses-img.png" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="col-sm-10 main-content">
+        <h1 class="heading">ADD USER</h1>
 
-          <div class="col-md-6">
-            <div class="box-info" style="background-color: #D4EFDF !important">
-              <h1 class="float-start mt-3" id="assignments-ongoing">0</h1>
-              <div class="float-end float-parent align-middle">
-                <div class="float-start align-middle mt-3">
-                  <h2>EXERCISES</h2>
-                  <p>ongoing</p>
-                </div>
-                <div class="float-end">
-                  <img src="assignments-img.png" alt="">
-                </div>
+        <div class="row ">
+          <form  action="index.html" method="post">
+            <div class="row mb-3">
+              <div class="col-sm-4">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" name="firstName">
+              </div>
+              <div class="col-sm-4">
+                <label for="middleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" name="middleName">
+              </div>
+              <div class="col-sm-4">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" name="lastName">
               </div>
             </div>
-          </div>
+            <div class="row mb-3">
+              <div class="col-sm-4">
+                <label for="email" class="form-label">Email address:</label>
+                <input type="email" class="form-control" name="email">
+              </div>
+              <div class="col-sm-4">
+                <label for="contactNumber" class="form-label">Contact Number:</label>
+                <input type="text" class="form-control" name="contactNumber">
+              </div>
+              <div class="col-sm-4">
+                <label for="birthDate" class="form-label">Birth date:</label>
+                <input type="date" class="form-control" name="birthDate">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-4">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" name="passsword">
+              </div>
+              <div class="col-sm-4 align-middle">
+                <div class="form-check form-switch align-middle">
+                  <input class="form-check-input align-middle" type="checkbox" name="isTeacher">
+                  <label class="form-check-label align-middle" for="isTeacher">Default switch checkbox input</label>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <input class="btn btn-primary align-middle" type="submit" name="" value="Submit">
+              </div>
+            </div>
+          </form>
         </div>
-
-        <div class="row mt-5">
-          <div class="col-sm-6">
-            <div class="img-links">
-              <img src="classes-img.png" alt="">
-            </div>
-          </div>
-
-          <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-12">
-                <img src="grades-img.png" alt="">
-              </div>
-            </div>
-            <div class="row mt-5">
-              <div class="col-sm-12">
-                <img src="repo-img.png" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-4 side-content">
-        <div class="assignments-tab">
-          <div class="row">
-            <div class="col-sm-12">
-              <h4> AGENDA </h4>
-            </div>
-          </div>
-          <div class="agenda-item">
-            <div class="row">
-              <div class="col-sm-12">
-                <h5> Exercise #1 </h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <p>IT20P - BM1</p>
-              </div>
-              <div class="col-sm-6">
-                Due: April 27, 2022
-              </div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
     </div>
   </div>
