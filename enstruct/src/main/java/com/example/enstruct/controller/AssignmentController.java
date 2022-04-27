@@ -2,6 +2,7 @@ package com.example.enstruct.controller;
 
 import com.example.enstruct.model.*;
 import com.example.enstruct.service.IAssignmentService;
+import com.example.enstruct.service.IClassesService;
 import com.example.enstruct.service.IAttachmentService;
 import com.example.enstruct.service.ISubmissionService;
 import com.example.enstruct.service.IUserService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,23 +28,27 @@ public class AssignmentController {
     private ISubmissionService submissionService;
 
     @Autowired
+    private IClassesService classesService;
+
+    @Autowired
     private IAttachmentService attachmentService;
 
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/assignment/add")
+    @GetMapping("/assignment-add")
     public String addAssignment(Model model) {
         model.addAttribute("assignment", new Assignment());
+        model.addAttribute("courses", classesService.getClasses());
         return "addAssignment";
     }
 
-    @PostMapping("/assignment/add")
+    @PostMapping("/assignment-add")
     public String addAssignmentSubmit(@ModelAttribute Assignment assignment, Model model) {
         model.addAttribute("assignment", assignment);
         Classes course = assignment.getCourse();
         assignmentService.addAssignment(assignment);
-        return "redirect:/assignments/" + course.getCourseCode();
+        return "redirect:/assignments/";
     }
 
     @GetMapping("/assignment/{id}")
@@ -113,11 +119,11 @@ public class AssignmentController {
 
         model.addAttribute("instructions", a.getInstruction());
 
-        Date d = a.getDeadline();
+        LocalDate d = a.getDeadline_date();
         DateFormat df = DateFormat.getDateInstance();
         String deadline = df.format(d);
         System.out.println("DEADLINE: " + deadline);
-        model.addAttribute("deadline", a.getDeadline());
+        model.addAttribute("deadline", a.getDeadline_date());
         model.addAttribute("maxScore", a.getMaxScore());
         model.addAttribute("assignmentId", assignmentId);
         return "studentAssignment";

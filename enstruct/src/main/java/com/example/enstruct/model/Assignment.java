@@ -1,11 +1,16 @@
 package com.example.enstruct.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
@@ -20,9 +25,16 @@ public class Assignment {
     private String instruction;
     private int maxScore;
 
-    private Date deadline;
-    private Date availabilityStart;
-    private Date availabilityEnd;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate deadline_date;
+
+    @DateTimeFormat(pattern="HH:mm")
+    private LocalTime deadline_time;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate availabilityStart;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate availabilityEnd;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"assignments", "hibernateLazyInitializer"})
@@ -72,27 +84,23 @@ public class Assignment {
         this.maxScore = maxScore;
     }
 
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
-    public Date getAvailabilityStart() {
+    public LocalDate getAvailabilityStart() {
         return availabilityStart;
     }
 
-    public void setAvailabilityStart(Date availabilityStart) {
+    public void setAvailabilityStart(LocalDate availabilityStart) {
         this.availabilityStart = availabilityStart;
     }
+    public void setAvailabilityStart(String availabilityStart) {
+        String[] deadlineArr = availabilityStart.split("/");
+        this.availabilityStart = LocalDate.of(Integer.parseInt(deadlineArr[2]), Integer.parseInt(deadlineArr[0]), Integer.parseInt(deadlineArr[1]));
+    }
 
-    public Date getAvailabilityEnd() {
+    public LocalDate getAvailabilityEnd() {
         return availabilityEnd;
     }
 
-    public void setAvailabilityEnd(Date availabilityEnd) {
+    public void setAvailabilityEnd(LocalDate availabilityEnd) {
         this.availabilityEnd = availabilityEnd;
     }
 
@@ -111,4 +119,27 @@ public class Assignment {
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
     }
+
+    public void setDeadline_date(String deadline_date_str) {
+        String[] deadlineArr = deadline_date_str.split("/");
+        this.deadline_date = LocalDate.of(Integer.parseInt(deadlineArr[2]), Integer.parseInt(deadlineArr[0]), Integer.parseInt(deadlineArr[1]));
+    }
+
+    public LocalDate getDeadline_date() {
+        return deadline_date;
+    }
+
+    public void setDeadline_date(LocalDate deadline_date) {
+        this.deadline_date = deadline_date;
+    }
+
+    public LocalTime getDeadline_time() {
+        return deadline_time;
+    }
+
+    public void setDeadline_time(LocalTime deadline_time) {
+        this.deadline_time = deadline_time;
+    }
+
+
 }

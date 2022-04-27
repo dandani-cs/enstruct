@@ -69,9 +69,9 @@
                     <div style="display:flex; flex-direction: column; height: 100%;">
                     <p class="card-text" style="flex-grow:1">${c.courseName}</p>
                     <p class="card-text">${section[c?index]}
-                        <#if professor[c?index]??>
+                        <!--<#if professor[c?index]??>
                             &middot; ${professor[c?index]}
-                        </#if>
+                        </#if>-->
                     </p>
                     </div>
                   </div>

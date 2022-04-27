@@ -55,26 +55,26 @@ public class ClassesController {
             courseCode.add(cc.substring(0, courseCodeIndex));
             section.add(cc.substring(courseCodeIndex+1, sectionIndex));
 
-            User teacher = e.get(i).getCourseCode().getTeacherId();
-
-            String teacherName = null;
-            if(teacher.getFirstName() != null) {
-                teacherName = teacher.getFirstName();
-            }
-            if(teacher.getMiddleName() != null) {
-                teacherName += " " + teacher.getMiddleName();
-            }
-            if(teacher.getLastName() != null) {
-                teacherName += " " + teacher.getLastName();
-            }
-
-            professor.add(teacherName);
+//            User teacher = e.get(i).getCourseCode().getTeacherId();
+//
+//            String teacherName = null;
+//            if(teacher.getFirstName() != null) {
+//                teacherName = teacher.getFirstName();
+//            }
+//            if(teacher.getMiddleName() != null) {
+//                teacherName += " " + teacher.getMiddleName();
+//            }
+//            if(teacher.getLastName() != null) {
+//                teacherName += " " + teacher.getLastName();
+//            }
+//
+//            professor.add(teacherName);
         }
 
         model.addAttribute("classes", c);
         model.addAttribute("courseCode", courseCode);
         model.addAttribute("section", section);
-        model.addAttribute("professor", professor);
+//        model.addAttribute("professor", professor);
 
         return "studentClasses";
     }

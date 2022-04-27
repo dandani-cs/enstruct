@@ -109,7 +109,7 @@ public class AnnouncementController {
 
                 Date curr_date = cal.getTime();
 
-                Predicate<Assignment> within_day = assignment -> fmt.format(assignment.getDeadline()).equals(fmt.format(curr_date));
+                Predicate<Assignment> within_day = assignment -> fmt.format(assignment.getDeadline_date()).equals(fmt.format(curr_date));
                 ArrayList<Assignment> filtered = new ArrayList<>(assignments.stream().filter(within_day).collect(Collectors.toList()));
                 calendar_table[week_idx][day_idx] = filtered.isEmpty() ? null : filtered;
 
