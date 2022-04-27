@@ -3,15 +3,14 @@ package com.example.enstruct.model;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "users")
 public class User {
     @Id
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long userId;
 
     private String userName;
     private String firstName;
@@ -20,12 +19,15 @@ public class User {
 
     private String  email;
     private String  password;
-    private Boolean isTeacher;
+    private boolean isTeacher;
+
+    private String contactNumber;
+    private Date   birthDate;
 
     public User() {
     }
 
-    public User(Long userId, String userName, String firstName, String lastName, String middleName, String email, String password, Boolean isTeacher) {
+    public User(long userId, String userName, String firstName, String lastName, String middleName, String email, String password, boolean isTeacher, String contactNumber, Date birthDate) {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;
@@ -34,13 +36,15 @@ public class User {
         this.email = email;
         this.password = password;
         this.isTeacher = isTeacher;
+        this.contactNumber = contactNumber;
+        this.birthDate = birthDate;
     }
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -92,12 +96,27 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getTeacher() {
+    public boolean getTeacher() {
         return isTeacher;
     }
 
-    public void setTeacher(Boolean teacher) {
+    public void setTeacher(boolean teacher) {
         isTeacher = teacher;
     }
 
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 }

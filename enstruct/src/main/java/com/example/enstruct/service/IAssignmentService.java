@@ -2,6 +2,7 @@ package com.example.enstruct.service;
 
 import com.example.enstruct.model.Assignment;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IAssignmentService {
@@ -11,6 +12,7 @@ public interface IAssignmentService {
     Assignment updateAssignment(Assignment assignment);
     void deleteAssignment(Long assignmentId);
 
-    List<Assignment> getPendingAssignmentsByCourseCode(long courseCode);
-    List<Assignment> getAssignmentsInCourse(long courseCode);
+    public List<Assignment> getAllAssignmentsWithinDates(Date from, Date to);
+    List<Assignment> getPendingAssignmentsByCourseCode(String courseCode);
+    List<Assignment> getAssignmentsInCourse(String courseCode);
 }

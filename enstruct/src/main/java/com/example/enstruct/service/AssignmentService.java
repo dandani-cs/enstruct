@@ -4,10 +4,13 @@ import com.example.enstruct.model.Assignment;
 import com.example.enstruct.repository.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.Assign;
+import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AssignmentService implements IAssignmentService{
     @Autowired
     private AssignmentRepository repository;
@@ -35,12 +38,17 @@ public class AssignmentService implements IAssignmentService{
     }
 
     @Override
-    public List<Assignment> getPendingAssignmentsByCourseCode(long courseCode) {
+    public List<Assignment> getPendingAssignmentsByCourseCode(String courseCode) {
         return repository.getPendingAssignmentsByCourseCode(courseCode);
     }
 
     @Override
-    public List<Assignment> getAssignmentsInCourse(long courseCode) {
+    public List<Assignment> getAllAssignmentsWithinDates(Date from, Date to) {
+        return repository.getAllAssignmentsWithinDates(from, to);
+    }
+
+    @Override
+    public List<Assignment> getAssignmentsInCourse(String courseCode) {
         return repository.getAssignmentsInCourse(courseCode);
     }
 }

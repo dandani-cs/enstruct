@@ -1,0 +1,53 @@
+.pmodal {
+
+
+
+    display: inline;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+
+}
+
+.pmodal-contents {
+    width:fit-content;
+    margin: auto;
+    height: 15vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 50px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 10px;
+}
+
+.pmodal-span {
+    font-size: 1.6vw;
+    height: fit-content;
+}
+
+.pmodal-body {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.pmodal-input {
+    background-color: #A93226;
+    color: white;
+    border: none;
+    font-size: 1.4vw;
+    padding: 10px 40px;
+    border-radius: 15px;
+
+}
