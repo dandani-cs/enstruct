@@ -48,6 +48,11 @@ public class AssignmentService implements IAssignmentService{
     }
 
     @Override
+    public List<Assignment> getAllAssignmentsWithinDatesByCourseCode(Date from, Date to, String courseCode) {
+        return repository.getAllAssignmentsWithinDatesByCourseCode(from, to, courseCode);
+    }
+
+    @Override
     public List<Assignment> getAllAssignmentsWithinDates(Date from, Date to) {
         return repository.getAllAssignmentsWithinDates(from, to);
     }
