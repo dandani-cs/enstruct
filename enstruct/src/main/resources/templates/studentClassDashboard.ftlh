@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/pmaster.css">
     <link rel="stylesheet" href="/css/classes.css">
+    <link rel="stylesheet" href="/css/announcement.css">
 
     <title>E-nstruct</title>
 </head>
@@ -50,31 +51,64 @@
         </div>
 
         <div class="col-sm-10 main-content">
-            <h1 class="heading">CLASSES</h1>
-            <div class="row">
-            <#list calendar_table as row>
-            <div class="row">
-                <#list row as days>
-                <div class="col date-cell border" style="width: 1rem;">
-                    <#assign day_idx = row?index * 7 + days?index + 1>
-                    <#if day_idx gt weekday_start - 1 && day_idx <= days_in_mo + weekday_start - 1>
-                        <p class="small date-num text-muted text-end">${day_idx - weekday_start + 1}</p>
-                    </#if>
-
-                    <#if days?has_content>
-                        <#list days as assignment>
-                        <div class="date-announcement mb-1">
-                            <div class="fw-light" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                <small>${assignment.name}</small>
+            <h1 class="heading">${course.courseName}</h1>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="col-lg-8 pb-5 px-4">
+                        <h5 class="mb-3">Calendar </h5>
+                        <div class="container-fluid-lg">
+                            <div class="row text-center">
+                                <div class="col"><p class="small date-num">Sun</p></div>
+                                <div class="col"><p class="small date-num">Mon</p></div>
+                                <div class="col"><p class="small date-num">Tue</p></div>
+                                <div class="col"><p class="small date-num">Wed</p></div>
+                                <div class="col"><p class="small date-num">Thu</p></div>
+                                <div class="col"><p class="small date-num">Fri</p></div>
+                                <div class="col"><p class="small date-num">Sat</p></div>
                             </div>
-                        </div>
-                        </#list>
-                    </#if>
+                            <#list calendar_table as row>
+                            <div class="row">
+                                <#list row as days>
+                                <div class="col date-cell border" style="width: 1rem;">
+                                    <#assign day_idx = row?index * 7 + days?index + 1>
+                                    <#if day_idx gt weekday_start - 1 && day_idx <= days_in_mo + weekday_start - 1>
+                                        <p class="small date-num text-muted text-end">${day_idx - weekday_start + 1}</p>
+                                    </#if>
 
+                                    <#if days?has_content>
+                                        <#list days as assignment>
+                                        <div class="date-announcement mb-1">
+                                            <div class="fw-light" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                <small>${assignment.name}</small>
+                                            </div>
+                                        </div>
+                                        </#list>
+                                    </#if>
+
+                                </div>
+                                </#list>
+                            </div>
+                            </#list>
+                            </div>
+                            </div>
+                        <div class="col-lg-4 px-3">
+                            <div class="agenda-container">
+                                <h5 class="mb-3 agenda-head">Class Assignments</h5>
+                                <#list assignments_from_now as assignment>
+                                    <div class="agenda">
+                                        <div class="d-flex flex-column px-4 py-3">
+                                            <p class="mb-0 fw-bold"><a href="/student/assignment/${assignment.assignmentId}">${assignment.name}</a></p>
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <p class="mb-0 fs-6 small">${assignment.course.courseName}</p>
+                                                <p class="mb-0 fs-7 small">Due: ${assignment.deadline_date}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </#list>
+                            </div>
+
+                        </div>
                 </div>
-                </#list>
-            </div>
-            </#list>
             </div>
         </div>
     </div>

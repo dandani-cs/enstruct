@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AssignmentService implements IAssignmentService{
+public class AssignmentService implements IAssignmentService {
     @Autowired
     private AssignmentRepository repository;
 
@@ -45,6 +45,11 @@ public class AssignmentService implements IAssignmentService{
     @Override
     public List<Assignment> getPendingAssignmentsByCourseCode(String courseCode) {
         return repository.getPendingAssignmentsByCourseCode(courseCode);
+    }
+
+    @Override
+    public List<Assignment> getAllPendingAssignments() {
+        return repository.getAllPendingAssignments();
     }
 
     @Override

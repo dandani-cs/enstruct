@@ -121,8 +121,8 @@ public class AssignmentController {
 
         LocalDate d = a.getDeadline_date();
         DateFormat df = DateFormat.getDateInstance();
-        String deadline = df.format(d);
-        System.out.println("DEADLINE: " + deadline);
+        //String deadline = df.format(d);
+        //System.out.println("DEADLINE: " + deadline);
         model.addAttribute("deadline", a.getDeadline_date());
         model.addAttribute("maxScore", a.getMaxScore());
         model.addAttribute("assignmentId", assignmentId);

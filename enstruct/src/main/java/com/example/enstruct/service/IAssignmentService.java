@@ -14,6 +14,7 @@ public interface IAssignmentService {
     List<Assignment> getAllAssignments();
     public List<Assignment> getAllAssignmentsWithinDatesByCourseCode(Date from, Date to, String courseCode);
     public List<Assignment> getAllAssignmentsWithinDates(Date from, Date to);
+    public List<Assignment> getAllPendingAssignments();
     List<Assignment> getPendingAssignmentsByCourseCode(String courseCode);
     List<Assignment> getAssignmentsInCourse(String courseCode);
 }
