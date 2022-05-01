@@ -216,6 +216,84 @@ public class ClassesController {
         return "instructorClasses";
     }
 
+    @RequestMapping(value = "/instructor/classes/{courseCode}")
+    public ModelAndView viewIstructorClassDashboard(ModelMap model, @PathVariable String courseCode)
+    {
+        AuthManager am = AuthManager.getInstance();
+        User user = am.getLoggedInUser();
+
+        if(user == null || !user.getTeacher()) {
+            return new ModelAndView("redirect:/login", model);
+        }
+
+        Classes course = classesService.getClass(courseCode);
+
+        if(courseCode.isEmpty() || course == null) {
+            return new ModelAndView("redirect:/instructor", model);
+        }
+
+        Calendar cal    = Calendar.getInstance();
+
+        Date date_today = cal.getTime();
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        int  num_days_mo   = cal.getActualMaximum(Calendar.DATE);
+        int  weekday_start = cal.get(Calendar.DAY_OF_WEEK);
+
+        Date month_start = cal.getTime();
+        cal.add(Calendar.DATE, num_days_mo);
+        Date month_end = cal.getTime();
+
+        List<Assignment> assignments_in_month = assignmentService.getAllAssignmentsWithinDatesByCourseCode(month_start, month_end, course.getCourseCode());
+        List<Assignment> assignments_from_now = assignmentService.getPendingAssignmentsByCourseCode(course.getCourseCode());
+
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        cal.set(Calendar.MONTH, date_today.getMonth());
+
+        int total_days = num_days_mo + weekday_start - 1;
+        int total_rows = (int) Math.ceil(total_days / 7.0);
+
+        ArrayList<Assignment>[][] calendar_table = new ArrayList[total_rows][7];
+        System.out.println("DAYS IN MO: " + num_days_mo);
+        System.out.println("TOTAL DAYS: " + total_days);
+        System.out.println("TOTAL ROWS: " + total_rows);
+
+        for(int week_idx = 0; week_idx < total_rows; week_idx++)
+        {
+            for(int day_idx = 0; day_idx < 7; day_idx++)
+            {
+                int curr_day_idx = (week_idx * 7) + day_idx;
+
+                if(curr_day_idx < weekday_start - 1)
+                {
+                    calendar_table[week_idx][day_idx] = null;
+                    continue;
+                }
+
+                Date curr_date = cal.getTime();
+
+                Predicate<Assignment> within_day = assignment -> assignment.getDeadline_date().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).equals(fmt.format(curr_date));
+                ArrayList<Assignment> filtered = new ArrayList<>(assignments_in_month.stream().filter(within_day).collect(Collectors.toList()));
+                calendar_table[week_idx][day_idx] = filtered.isEmpty() ? null : filtered;
+
+                cal.add(Calendar.DATE, 1);
+
+            }
+
+        }
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("course", course);
+        mv.addObject("calendar_table", calendar_table);
+        mv.addObject("days_in_mo", num_days_mo);
+        mv.addObject("weekday_start", weekday_start);
+        mv.addObject("assignments_from_now", assignments_from_now);
+        mv.setViewName("instructorClassDashboard");
+
+        return mv;
+    }
+
     @RequestMapping(value = "/instructor/classes/addClass", method = RequestMethod.GET)
     public String addClass(Model model)
     {
