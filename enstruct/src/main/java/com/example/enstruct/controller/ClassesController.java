@@ -33,6 +33,11 @@ public class ClassesController {
     @RequestMapping(value = "/student/classes", method = RequestMethod.GET)
     public String showStudentClasses(Model model)
     {
+        String authenticationResponse = AuthManager.getInstance().labelUser(false);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+
         AuthManager am = AuthManager.getInstance();
         User user = am.getLoggedInUser();
 
@@ -47,6 +52,9 @@ public class ClassesController {
         for(int i = 0; i < e.size(); i++) {
             c.add(e.get(i).getCourseCode());
 
+            System.out.println("E: " + e.get(i));
+            System.out.println("CC1: " + e.get(i).getCourseCode());
+            System.out.println("CC2: " + e.get(i).getCourseCode().getCourseCode());
             String cc = e.get(i).getCourseCode().getCourseCode();
 
             int courseCodeIndex = cc.indexOf("_");
@@ -82,6 +90,11 @@ public class ClassesController {
     @RequestMapping(value = "/instructor/classes", method = RequestMethod.GET)
     public String showInstructorClasses(Model model)
     {
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+
         AuthManager am = AuthManager.getInstance();
         User user = am.getLoggedInUser();
 
@@ -129,6 +142,11 @@ public class ClassesController {
     @RequestMapping(value = "/instructor/classes/addClass", method = RequestMethod.GET)
     public String addClass(Model model)
     {
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+
         AuthManager am = AuthManager.getInstance();
         User user = am.getLoggedInUser();
 
@@ -145,6 +163,11 @@ public class ClassesController {
     @RequestMapping(value = "/instructor/classes/addClass/{courseCode}/{courseName}/{enabled}/{students}", method = RequestMethod.POST)
     public ModelAndView addClass(Model model, @PathVariable String courseCode, @PathVariable String courseName, @PathVariable Boolean enabled, @PathVariable String students)
     {
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return new ModelAndView(authenticationResponse, (Map<String, ?>) model);
+        }
+
         AuthManager am = AuthManager.getInstance();
         User user = am.getLoggedInUser();
 

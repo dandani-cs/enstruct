@@ -42,7 +42,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
+          <a class="nav-link logout" onclick="location.href='/userLogout'"><i class="bi bi-box-arrow-left"></i>Log Out</a>
         </li>
 
 
@@ -54,7 +54,12 @@
         <div style="display:flex; flex-direction: row; align-items: center;">
           <div style="display:flex; flex-direction: column; flex-grow: 1;">
             <h1 class="heading" style="margin-bottom: 10px;">REPOSITORY: ${courseCode} ${section}</h1>
-            <h2 style="color: #A93226; margin-bottom: 20px;">${name}</h2>
+            <h2 style="color: #A93226; margin-bottom: 20px;">
+                ${name}
+                <#if available == false>
+                  (Deadline Passed)
+              </#if>
+            </h2>
         </div>
         <#if showAddFiles == true>
           <div class="card" onclick="location.href='/student/assignment/${assignmentId}'" style="margin-bottom: 0px; height:100%; margin-top: 58px; border-radius: 10px; background-color: #A93226; color:white; text-align: center;">
