@@ -49,7 +49,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
+                        <a class="nav-link logout" onclick="location.href='/userLogout'"><i class="bi bi-box-arrow-left"></i>Log Out</a>
                     </li>
                 </ul>
             </div>
