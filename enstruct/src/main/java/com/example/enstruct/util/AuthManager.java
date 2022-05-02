@@ -24,4 +24,33 @@ public class AuthManager {
     {
         curr_logged_in_user = user;
     }
+
+    public void logoutUser() {
+        curr_logged_in_user = null;
+    }
+
+    public String labelUser(boolean isTeacher) {
+        if(AuthManager.getInstance().getLoggedInUser() == null) {
+            return "redirect:/login";
+        } else {
+            boolean has_invalid_priv = true;
+
+            if(isTeacher == true && AuthManager.getInstance().getLoggedInUser().getTeacher() == true ||
+                    isTeacher == false && AuthManager.getInstance().getLoggedInUser().getTeacher() == false) {
+                has_invalid_priv = false;
+            } else {
+                has_invalid_priv = true;
+            }
+
+            if (has_invalid_priv) {
+                //logoutUser();
+                if(curr_logged_in_user.getTeacher()) {
+                    return "redirect:/instructor";
+                } else {
+                    return "redirect:/student";
+                }
+            }
+        }
+        return "continue";
+    }
 }

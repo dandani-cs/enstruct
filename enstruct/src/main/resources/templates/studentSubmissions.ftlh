@@ -42,7 +42,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
+            <a class="nav-link logout" onclick="location.href='/userLogout'"><i class="bi bi-box-arrow-left"></i>Log Out</a>
           </li>
 
 
@@ -58,19 +58,7 @@
         </div>
         <div class="row">
 
-          <div class="col borders studname">
-            <span class="arrows" onclick="location.href='/student/submissions/${previous}'"><</span>
-            <div class="selectholder">
-              <select onchange="location.href = this.value;">
-                <option selected hidden>${student}</option>
-                <#list submissions as s>
-                <option value="/student/submissions/${s.submissionId}">${students[s?index]}</option>
-                </#list>
 
-              </select>
-            </div>
-            <span class="arrows" onclick="location.href='/student/submissions/${next}'">></span>
-          </div>
         </div>
 
         <div class="borders exer">
