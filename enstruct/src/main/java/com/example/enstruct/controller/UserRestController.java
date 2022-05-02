@@ -19,9 +19,4 @@ public class UserRestController {
         return service.findAll();
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public User addUser(@RequestBody User user)
-    {
-        return service.addUser(user);
-    }
 }
