@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,7 +78,8 @@ public class AnnouncementController {
         cal.add(Calendar.DATE, num_days_mo);
         Date month_end = cal.getTime();
 
-        List<Assignment> assignments = assignmentService.getAllAssignmentsWithinDates(month_start, month_end);
+        List<Assignment> assignments_month   = assignmentService.getAllAssignmentsWithinDates(month_start, month_end);
+        List<Assignment> pending_assignments = assignmentService.getAllPendingAssignments();
 
         ArrayList<List<Assignment>[]> to_display = new ArrayList<>();
 
@@ -109,8 +111,8 @@ public class AnnouncementController {
 
                 Date curr_date = cal.getTime();
 
-                Predicate<Assignment> within_day = assignment -> fmt.format(assignment.getDeadline_date()).equals(fmt.format(curr_date));
-                ArrayList<Assignment> filtered = new ArrayList<>(assignments.stream().filter(within_day).collect(Collectors.toList()));
+                Predicate<Assignment> within_day = assignment -> assignment.getDeadline_date().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).equals(fmt.format(curr_date));
+                ArrayList<Assignment> filtered = new ArrayList<>(assignments_month.stream().filter(within_day).collect(Collectors.toList()));
                 calendar_table[week_idx][day_idx] = filtered.isEmpty() ? null : filtered;
 
                 cal.add(Calendar.DATE, 1);
@@ -124,6 +126,7 @@ public class AnnouncementController {
         mv.addObject("calendar_table", calendar_table);
         mv.addObject("days_in_mo", num_days_mo);
         mv.addObject("weekday_start", weekday_start);
+        mv.addObject("assignments", pending_assignments);
         mv.setViewName("studentAnnouncements");
         return mv;
     }

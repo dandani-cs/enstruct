@@ -61,7 +61,7 @@
                     </#if>
                 ">
                     <div class="card-body">
-                  <div>
+                  <div onclick="window.location.href='/student/classes/${c.courseCode}'">
                     <h5 class="card-title lancpp" >C++ </h5>
                     &nbsp;
                     <h5 class="card-title" >${courseCode[c?index]}</h5>

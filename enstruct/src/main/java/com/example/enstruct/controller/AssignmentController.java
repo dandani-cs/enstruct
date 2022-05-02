@@ -229,6 +229,7 @@ public class AssignmentController {
         String deadline = t.format(DateTimeFormatter.ofPattern("hh:mm a")) + ", " + d.format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"));
         model.addAttribute("assignmentName", a.getName());
         model.addAttribute("deadline", deadline);
+
         model.addAttribute("maxScore", a.getMaxScore());
         model.addAttribute("assignmentId", assignmentId);
         return "studentAssignment";
