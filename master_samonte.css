@@ -52,6 +52,22 @@ body {
   margin-bottom: 0 !important;
 }
 
+.grades-item {
+  background-color: #F9EBEA;
+  color: #A93226;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.grades-item h5 {
+  margin-top: 5px;
+}
+
+.grades-active {
+  background-color: #FCF3CF;
+}
+
 .heading {
   margin-top: 50px;
   margin-bottom: 30px;
@@ -100,6 +116,14 @@ body {
 .profile-pic {
   max-width: 150px;
   margin-bottom: 10px;
+}
+
+.results-content {
+  padding: 10px;
+}
+
+.results-content h3 {
+  color: #A93226;
 }
 
 .side-content {
