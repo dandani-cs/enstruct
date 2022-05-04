@@ -33,7 +33,7 @@ public class EnrollmentService implements IEnrollmentService {
     public List<Enrollment> findByUserId(long userId) { return repository.findByUserUserId(userId); }
 
     @Override
-    public List<Enrollment> findByCourseId(long courseId) {
+    public List<Enrollment> findByCourseId(String courseId) {
         return repository.findByCourseCodeCourseCode(courseId);
     }
 

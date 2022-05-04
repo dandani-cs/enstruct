@@ -68,7 +68,7 @@ public class AssignmentController {
         model.addAttribute("assignment", assignment);
         Classes course = assignment.getCourse();
         assignmentService.addAssignment(assignment);
-        return "redirect:/assignments/";
+        return "redirect:/instructor/classes/" + course.getCourseCode();
     }
 
     @GetMapping("/assignment/{id}")
