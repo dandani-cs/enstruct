@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
   background-color: #F9EBEA;
+  font-family: 'Roboto', sans-serif;
 }
 
 .add-form {
@@ -52,6 +55,32 @@ body {
   margin-bottom: 0 !important;
 }
 
+.grades-item {
+  background-color: #F9EBEA;
+  color: #A93226;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.grades-item h4 {
+  margin-top: 7px !important;
+  margin-bottom: 7px !important;
+}
+
+.grades-active {
+  background-color: #FCF3CF;
+}
+
+.grades-details {
+  margin-top: 50px;
+  color: #A93226
+}
+
+.grades-details p {
+  color: gray;
+}
+
 .heading {
   margin-top: 50px;
   margin-bottom: 30px;
@@ -100,6 +129,14 @@ body {
 .profile-pic {
   max-width: 150px;
   margin-bottom: 10px;
+}
+
+.results-content {
+  padding: 10px;
+}
+
+.results-content h3 {
+  color: #A93226;
 }
 
 .side-content {
