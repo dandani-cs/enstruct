@@ -51,76 +51,31 @@
         </ul>
       </div>
 
-      <div class="col-sm-4 side-content">
+      <div class="col-sm-10 main-content">
         <div class="assignments-tab">
           <div class="row">
             <div class="col-sm-12">
               <h1 class="heading">GRADES</h1>
             </div>
           </div>
-          <div class="grades-item grades-active">
-            <div class="row">
-              <div class="col-sm-2">
-                <h2> E1 </h2>
-              </div>
-              <div class="col-sm-10 align-middle">
-                <h4 class="align-middle"> Exercise 1 </h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="grades-item">
-            <div class="row">
-              <div class="col-sm-2">
-                <h2> E2 </h2>
-              </div>
-              <div class="col-sm-10 align-middle">
-                <h4 class="align-middle"> Exercise 2 </h4>
-              </div>
-            </div>
+          <div class="col-sm-12 grades-table">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>E1</th>
+                  <th>E2</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>Ry, Ninong</td>
+                <td>16</td>
+                <td>20</td>
+              </tr>
+            </table>
           </div>
         </div>
-
-
       </div>
-
-      <div class="col-sm-6 main-content">
-        <h1 class="heading">RESULTS</h1>
-        <div class="results-content">
-          <div class="row justify-content-between">
-            <div class="col-md-4">
-              <h3 class="heading-lbl">EXERCISE 1</h3>
-            </div>
-
-            <div class="col-md-4">
-              <h3 class="">16/20</h3>
-            </div>
-          </div>
-
-          <div class="row grades-details text-center">
-            <h2>DETAILS</h2>
-            <div class="row grade-detail">
-              <div class="col-sm-6">
-                <h5>DEADLINE</h5>
-              </div>
-              <div class="col-sm-6">
-                <p>04/05/22</p>
-              </div>
-            </div>
-            <div class="row grade-detail">
-              <div class="col-sm-6">
-                <h5>DATE SUBMITTED</h5>
-              </div>
-              <div class="col-sm-6">
-                <p>04/05/22</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
     </div>
   </div>
 

@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
   background-color: #F9EBEA;
+  font-family: 'Roboto', sans-serif;
 }
 
 .add-form {
@@ -60,12 +63,22 @@ body {
   padding: 20px;
 }
 
-.grades-item h5 {
-  margin-top: 5px;
+.grades-item h4 {
+  margin-top: 7px !important;
+  margin-bottom: 7px !important;
 }
 
 .grades-active {
   background-color: #FCF3CF;
+}
+
+.grades-details {
+  margin-top: 50px;
+  color: #A93226
+}
+
+.grades-details p {
+  color: gray;
 }
 
 .heading {
