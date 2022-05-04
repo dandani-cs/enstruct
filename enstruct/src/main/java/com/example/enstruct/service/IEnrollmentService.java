@@ -11,7 +11,7 @@ public interface IEnrollmentService {
     public List<Enrollment> findByUserId(long userId);
 
     // Find all enrollments in a particular course
-    public List<Enrollment> findByCourseId(long courseId);
+    public List<Enrollment> findByCourseId(String courseId);
 
     // Find a particular enrollment of a particular student
     public Enrollment findByCourseAndUserId(long userId, long courseId);

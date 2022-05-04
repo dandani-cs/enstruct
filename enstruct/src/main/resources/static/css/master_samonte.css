@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
   background-color: #F9EBEA;
+  font-family: 'Roboto', sans-serif;
 }
 
+.add-form {
+  padding: 50px;
+}
 
 .active {
   background-color: #A93226 !important;
@@ -49,15 +55,37 @@ body {
   margin-bottom: 0 !important;
 }
 
+.grades-item {
+  background-color: #F9EBEA;
+  color: #A93226;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.grades-item h4 {
+  margin-top: 7px !important;
+  margin-bottom: 7px !important;
+}
+
+.grades-active {
+  background-color: #FCF3CF;
+}
+
+.grades-details {
+  margin-top: 50px;
+  color: #A93226
+}
+
+.grades-details p {
+  color: gray;
+}
+
 .heading {
   margin-top: 50px;
   margin-bottom: 30px;
   color: #A93226;
   font-weight: bold;
-}
-
-.heading-lbl {
-  color: #A93226;
 }
 
 .logout {
@@ -104,12 +132,11 @@ body {
 }
 
 .results-content {
-  padding: 20px;
-  background-color: white;
+  padding: 10px;
 }
 
-.results-content p {
-  color: #8F9BB3;
+.results-content h3 {
+  color: #A93226;
 }
 
 .side-content {
@@ -117,7 +144,7 @@ body {
 
 .assignments-tab {
   background-color: white;
-  padding: 30px;
+  padding: 20px;
   height: 100%;
 }
 
@@ -134,30 +161,6 @@ body {
 
 .agenda-item p {
   color: #8F9BB3;
-}
-
-.grades-item {
-  margin: 10px;
-  padding: 20px;
-  background-color: #F7EBEA;
-  border-radius: 20px;
-}
-
-.grades-item h3, .grades-item h5 {
-  color: #A93226;
-  margin-bottom: 0;
-}
-
-.grades-item h5 {
-  margin-top: 5px;
-}
-
-.grades-item p {
-  color: #8F9BB3;
-}
-
-.grades-active {
-  background-color: #FCF3CF !important;
 }
 
 .title {
