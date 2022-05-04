@@ -21,7 +21,7 @@
         <div class="profile-mini text-center">
           <img src="img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
           <p id="user-fullname">ANDERSON, TIMOTHY</p>
-          <p id="user-role">STUDENT</p>
+          <p id="user-role">INSTRUCTOR</p>
         </div>
         <ul class="nav flex-column nav-pills nav-justified">
           <li class="nav-item">
@@ -37,7 +37,7 @@
             <a class="nav-link"><i class="bi bi-clipboard-data-fill"></i>Grades</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><i class="bi bi-person-badge-fill"></i>Profile</a>
+            <a class="nav-link" href="/addUser"><i class="bi bi-person-badge-fill"></i>Add User</a>
           </li>
 
           <li class="nav-item">
@@ -53,7 +53,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="box-info">
-              <h1 class="float-start mt-3" id="courses-enrolled">0</h1>
+              <h1 class="float-start mt-3" id="courses-enrolled">1</h1>
               <div class="float-end float-parent align-middle">
                 <div class="float-start align-middle mt-3">
                   <h2>COURSES</h2>
@@ -85,19 +85,25 @@
         <div class="row mt-5">
           <div class="col-sm-6">
             <div class="img-links">
+              <a href="/instructor/classes">
               <img src="img/classes-img.png" alt="">
+              </a>
             </div>
           </div>
 
           <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-12">
+                <a href="/instructor/grades">
                 <img src="img/grades-img.png" alt="">
+                </a>
               </div>
             </div>
             <div class="row mt-5">
               <div class="col-sm-12">
+                <a href="/instructor/repositories">
                 <img src="img/repo-img.png" alt="">
+                </a>
               </div>
             </div>
           </div>
@@ -123,28 +129,12 @@
                 <p>${courses[a?index]}</p>
               </div>
               <div class="col-sm-6">
-                Due: April 27, 2022
+                Due: ${a.deadline_date}
               </div>
             </div>
           </div>
           </#list>
-          <!-- start agenda -->
-          <div class="agenda-item">
-            <div class="row">
-              <div class="col-sm-12">
-                <h5> Exercise #1 </h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <p>IT20P - BM1</p>
-              </div>
-              <div class="col-sm-6">
-                Due: April 27, 2022
-              </div>
-            </div>
-          </div>
-          <!-- end agenda -->
+
         </div>
 
 

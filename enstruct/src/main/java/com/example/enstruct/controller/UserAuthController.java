@@ -51,6 +51,17 @@ public class UserAuthController {
 //        if(is_not_logged_in || has_invalid_priv)
 //            return "redirect:/login";
 
+        User user = AuthManager.getInstance().getLoggedInUser();
+
+        List<Assignment> agenda = assignmentService.getAllPendingAssignments();
+        List<String> courses = new ArrayList<>();
+        for (Assignment a : agenda) {
+            courses.add(a.getCourse().getCourseName());
+        }
+
+        model.addAttribute("agenda", agenda);
+        model.addAttribute("courses", courses);
+
         return "studentDashboard";
     }
 

@@ -12,23 +12,23 @@
 
   <title>E-nstruct</title>
 </head>
-<body>
+<body >
 
   <div class="container-fluid">
-    <div class="row gx-5">
+    <div class="row gx-5" style="height: 100vh">
       <div class="col-sm-2 nav-col">
         <h1 class="title text-center">E-NSTRUCT</h1>
         <div class="profile-mini text-center">
-          <img src="person-pic.jpg" class="rounded mx-auto d-block profile-pic">
+          <img src="img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
           <p id="user-fullname">ANDERSON, TIMOTHY</p>
-          <p id="user-role">STUDENT</p>
+          <p id="user-role">INSTRUCTOR</p>
         </div>
         <ul class="nav flex-column nav-pills nav-justified">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-fill"></i>Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-door-closed-fill"></i>Classes</a>
+            <a class="nav-link" href="/instructor/classes"><i class="bi bi-door-closed-fill"></i>Classes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="bi bi-archive-fill"></i>Repository</a>
@@ -37,7 +37,7 @@
             <a class="nav-link"><i class="bi bi-clipboard-data-fill"></i>Grades</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><i class="bi bi-person-badge-fill"></i>Profile</a>
+            <a class="nav-link"><i class="bi bi-person-badge-fill"></i>Add User</a>
           </li>
 
           <li class="nav-item">
@@ -86,13 +86,13 @@
                 <label for="password" class="form-label">Password:</label>
                 <input type="password" class="form-control" name="password">
               </div>
-              <div class="col-sm-4 align-middle">
-                <div class="form-check form-switch align-middle">
+              <div class="col-sm-4 align-middle ">
+                <div class="form-check form-switch align-middle mt-2">
                   <input class="form-check-input align-middle" type="checkbox" name="isTeacher">
-                  <label class="form-check-label align-middle" for="isTeacher">Default switch checkbox input</label>
+                  <label class="form-check-label align-middle" for="isTeacher">Instructor</label>
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-4 text-center">
                 <input class="btn btn-primary align-middle" type="submit" name="" value="Submit">
               </div>
             </div>

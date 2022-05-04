@@ -18,7 +18,7 @@
 <body>
 
   <div class="container-fluid">
-    <div class="row gx-5">
+    <div class="row gx-5" style="height: 100vh">
       <div class="col-sm-2 nav-col">
         <h1 class="title text-center">E-NSTRUCT</h1>
         <div class="profile-mini text-center">
