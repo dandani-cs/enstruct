@@ -42,7 +42,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
+            <a class="nav-link logout" onclick="location.href='/userLogout'"><i class="bi bi-box-arrow-left"></i>Log Out</a>
           </li>
 
 
@@ -63,7 +63,7 @@
                 <div class="card">
 
                   <div class="card-body">
-                  <div>
+                  <div onclick="window.location.href='/instructor/classes/${c.courseCode}'">
                     <h5 class="card-title lancpp" >C++ </h5>
                     &nbsp;
                     <h5 class="card-title" >${courseCode[c?index]}</h5>

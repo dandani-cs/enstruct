@@ -40,11 +40,16 @@ public class UserAuthController {
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String showStudentDashboard(Model model)
     {
-        boolean is_not_logged_in = AuthManager.getInstance().getLoggedInUser() == null;
-        boolean has_invalid_priv = AuthManager.getInstance().getLoggedInUser().getTeacher();
-
-        if(is_not_logged_in || has_invalid_priv)
-            return "redirect:/login";
+        String authenticationResponse = AuthManager.getInstance().labelUser(false);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+//
+//        boolean is_not_logged_in = AuthManager.getInstance().getLoggedInUser() == null;
+//        boolean has_invalid_priv = AuthManager.getInstance().getLoggedInUser().getTeacher();
+//
+//        if(is_not_logged_in || has_invalid_priv)
+//            return "redirect:/login";
 
         return "studentDashboard";
     }
@@ -52,12 +57,18 @@ public class UserAuthController {
     @RequestMapping(value = "/student/profile", method = RequestMethod.GET)
     public ModelAndView showStudentProfile(ModelMap model)
     {
-        User curr_logged_in = AuthManager.getInstance().getLoggedInUser();
-
-        if(curr_logged_in == null)
-        {
-            return new ModelAndView("redirect:/login", model);
+        String authenticationResponse = AuthManager.getInstance().labelUser(false);
+        if(authenticationResponse != "continue") {
+            return new ModelAndView(authenticationResponse, (Map<String, ?>) model);
         }
+
+        User curr_logged_in = AuthManager.getInstance().getLoggedInUser();
+//
+//        if(curr_logged_in == null)
+//        {
+//            return new ModelAndView("redirect:/login", model);
+//        }
+
         List<Enrollment> courses_enrolled = enrollmentService.findByUserId(curr_logged_in.getUserId());
 
         System.out.println("COURSES ENROLLED!");
@@ -74,16 +85,21 @@ public class UserAuthController {
     @RequestMapping(value = "/instructor", method = RequestMethod.GET)
     public String showInstructorDashboard(Model model)
     {
-        boolean is_not_logged_in = AuthManager.getInstance().getLoggedInUser() == null;
-
-
-        if(is_not_logged_in) {
-            return "redirect:/login";
-        } else {
-            boolean has_invalid_priv = !AuthManager.getInstance().getLoggedInUser().getTeacher();
-            if (has_invalid_priv)
-                return "redirect:/login";
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
         }
+
+//        boolean is_not_logged_in = AuthManager.getInstance().getLoggedInUser() == null;
+//
+//
+//        if(is_not_logged_in) {
+//            return "redirect:/login";
+//        } else {
+//            boolean has_invalid_priv = !AuthManager.getInstance().getLoggedInUser().getTeacher();
+//            if (has_invalid_priv)
+//                return "redirect:/login";
+//        }
 
         List<Assignment> agenda = assignmentService.getAllAssignments();
         List<String> courses = new ArrayList<>();
@@ -123,5 +139,30 @@ public class UserAuthController {
         AuthManager.getInstance().loginUser(existing_entry);
         String dashboard_link = String.format("redirect:%s", existing_entry.getTeacher() ? "/instructor" : "/student");
         return new ModelAndView(dashboard_link, model);
+    }
+
+    @GetMapping(value = "/addUser")
+    public String addUserView(@ModelAttribute User user, Model model) {
+        
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+
+        model.addAttribute("user", new User());
+        return "addUser";
+    }
+
+    @PostMapping(value = "/addUser")
+    public String addUser(@ModelAttribute User user, Model model) {
+        model.addAttribute("user", user);
+        service.addUser(user);
+        return "redirect:/instructor";
+    }
+
+    @RequestMapping(value = "/userLogout", method = RequestMethod.GET)
+    public ModelAndView logoutUser(Model model) {
+        AuthManager.getInstance().logoutUser();
+        return new ModelAndView("redirect:/login", (Map<String, ?>) model);
     }
 }

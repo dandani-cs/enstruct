@@ -42,7 +42,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
+          <a class="nav-link logout" onclick="location.href='/userLogout'"><i class="bi bi-box-arrow-left"></i>Log Out</a>
         </li>
 
 
@@ -50,7 +50,21 @@
     </div>
 
       <div class="col-sm-10 main-content" >
-        <h1 class="heading">EXERCISE 1</h1>
+        <div style="display:flex; flex-direction: row; align-items: center;">
+          <div style="display:flex; flex-direction: column; flex-grow: 1;">
+            <h1 class="heading" style="margin-bottom: 10px;">${assignmentName}</h1>
+            <h2 style="color: #A93226; margin-bottom: 20px;">
+                  <#if submitted == true>
+                      Already Submitted
+                  </#if>
+                  <#if available == false>
+                    <#if submitted == false>
+                        Deadline Passed
+                    </#if>
+                  </#if>
+            </h2>
+        </div>
+        </div>
 
         <div class="row prow">
           <div class="col-lg-8 pinstructions">
@@ -73,8 +87,17 @@
             <div class="pbutton" onclick="triggerFile()">
                <img class="pbuttonimg" src="/img/pupload.svg" style="height: 4vw; ">
               <span style="font-size: 1.8vw; font-weight: bold;">Upload File</span>
-              <form style="display: none" id="uploadAssignmentForm" name="uploadAssignmentForm" method="post">
-                  <input type="file" id="upload" name="upload" onchange="openModal()">
+              <form style="display: none" id="uploadAssignmentForm" name="uploadAssignmentForm" method="post" enctype="multipart/form-data">
+                  <input type="file" id="upload" name="upload" onchange="openModal()"
+                      <#if submitted == true>
+                          disabled
+                      </#if>
+                      <#if available == false>
+                        <#if submitted == false>
+                            disabled
+                        </#if>
+                      </#if>
+                  >
               </form>
             </div>
           </div>

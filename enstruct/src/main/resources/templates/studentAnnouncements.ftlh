@@ -49,7 +49,7 @@
                     </li>
             
                     <li class="nav-item">
-                        <a class="nav-link logout"><i class="bi bi-box-arrow-left"></i>Log Out</a>
+                        <a class="nav-link logout" onclick="location.href='/userLogout'"><i class="bi bi-box-arrow-left"></i>Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -130,34 +130,17 @@
                         <div class="col-lg-4 col-md-12 h-100 mt-3 ">
                             <div class="agenda-container">
                                 <h5 class="mb-3 agenda-head">Agenda</h5>
-                                <div class="agenda">
-                                    <div class="d-flex flex-column px-4 py-3">
-                                        <p class="mb-0 fw-bold">Exercise 2</p>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="mb-0 fs-7 small">IT194 - BM6</p>
-                                            <p class="mb-0 fs-7 small">Due: Mar 03 2022</p>
+                                <#list assignments as assignment>
+                                    <div class="agenda">
+                                        <div class="d-flex flex-column px-4 py-3">
+                                            <p class="mb-0 fw-bold"><a href="/student/assignment/${assignment.assignmentId}">${assignment.name}</a></p>
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <p class="mb-0 fs-6 small">${assignment.course.courseName}</p>
+                                                <p class="mb-0 fs-7 small">Due: ${assignment.deadline_date}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="agenda">
-                                    <div class="d-flex flex-column px-4 py-3">
-                                        <p class="mb-0 fw-bold">Exercise 2</p>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="mb-0 fs-7 small">IT194 - BM6</p>
-                                            <p class="mb-0 fs-7 small">Due: Mar 03 2022</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="agenda">
-                                    <div class="d-flex flex-column px-4 py-3">
-                                        <p class="mb-0 fw-bold">Exercise 2</p>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p class="mb-0 fs-7 small">IT194 - BM6</p>
-                                            <p class="mb-0 fs-7 small">Due: Mar 03 2022</p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                </#list>
                             </div>
                         </div>
                     </div>

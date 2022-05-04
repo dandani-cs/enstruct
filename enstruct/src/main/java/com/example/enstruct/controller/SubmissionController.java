@@ -4,6 +4,7 @@ import com.example.enstruct.service.IClassesService;
 import com.example.enstruct.service.IEnrollmentService;
 import com.example.enstruct.service.ISubmissionService;
 import com.example.enstruct.service.IUserService;
+import com.example.enstruct.util.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class SubmissionController {
@@ -33,9 +35,36 @@ public class SubmissionController {
     private ISubmissionService submissionService;
 
     @RequestMapping(value = "/student/submissions/{submissionId}", method = RequestMethod.GET)
-    public String showStudentClasses(Model model, @PathVariable long submissionId) throws IOException {
-        Assignment a = submissionService.getSubmission(submissionId).getAssignmentId();
-        List<Submission> s = submissionService.getAllSubmissionsInAssignment(a.getAssignmentId());
+    public String showStudentSubmissions(Model model, @PathVariable long submissionId) throws IOException {
+        String authenticationResponse = AuthManager.getInstance().labelUser(false);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+
+        AuthManager am = AuthManager.getInstance();
+        User u = am.getLoggedInUser();
+
+
+        Assignment a = null;
+        List<Submission> s = new ArrayList<>();
+        try{
+
+        a = submissionService.getSubmission(submissionId).getAssignmentId();
+        s = submissionService.getAllSubmissionsInAssignment(a.getAssignmentId());
+        } catch(Exception e) {
+            return "redirect:/student";
+        }
+
+
+        Submission ss = submissionService.getSubmissionOfStudentInAssignment(u.getUserId(), a.getAssignmentId());
+        if(ss != null) {
+            if(ss.getSubmissionId() != submissionId) {
+                return "redirect:/student/submissions/" + ss.getSubmissionId();
+            }
+        } else {
+            return "redirect:/student";
+        }
+
 
         String cc = a.getCourse().getCourseCode();
 
@@ -87,7 +116,9 @@ public class SubmissionController {
             }
             students.add(userName);
         }
-        String fil = "C:\\Users\\dcsam\\Documents\\programming\\enstruct\\cppProgs\\" + filename;
+
+        String fil = "C://enstruct//repository//" + String.valueOf(a.getAssignmentId()) + "//" + filename;
+
         FileInputStream fin = new FileInputStream(fil);
         int i = 0;
         String code = "";
@@ -117,7 +148,12 @@ public class SubmissionController {
     }
 
     @RequestMapping(value = "/instructor/submissions/{submissionId}", method = RequestMethod.GET)
-    public String showInstructorClasses(Model model, @PathVariable long submissionId) throws IOException {
+    public String showInstructorSubmissions(Model model, @PathVariable long submissionId) throws IOException {
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return authenticationResponse;
+        }
+
         Assignment a = submissionService.getSubmission(submissionId).getAssignmentId();
         List<Submission> s = submissionService.getAllSubmissionsInAssignment(a.getAssignmentId());
 
@@ -172,7 +208,7 @@ public class SubmissionController {
             }
             students.add(userName);
         }
-        String fil = "C:\\Users\\dcsam\\Documents\\programming\\enstruct\\cppProgs\\" + filename;
+        String fil = "C://enstruct//repository//" + String.valueOf(a.getAssignmentId()) + "//" + filename;
         FileInputStream fin = new FileInputStream(fil);
         int i = 0;
         String code = "";
