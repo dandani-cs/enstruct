@@ -75,7 +75,6 @@
               <span>Score:</span>
               <input readonly value="${grade}">
             </div>
-            <span>LATE SUBMISSION</span>
             <div style="flex-grow:1"></div>
           </div>
         </div>
