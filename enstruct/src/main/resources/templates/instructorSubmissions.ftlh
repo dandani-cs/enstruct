@@ -59,17 +59,17 @@
         <div class="row">
 
           <div class="col borders studname">
-            <span class="arrows" onclick="location.href='/student/submissions/${previous}'"><</span>
+            <span class="arrows" onclick="location.href='/instructor/submissions/${previous}'"><</span>
             <div class="selectholder">
               <select onchange="location.href = this.value;">
                 <option selected hidden>${student}</option>
                 <#list submissions as s>
-                <option value="/student/submissions/${s.submissionId}">${students[s?index]}</option>
+                <option value="/instructor/submissions/${s.submissionId}">${students[s?index]}</option>
                 </#list>
 
               </select>
             </div>
-            <span class="arrows" onclick="location.href='/student/submissions/${next}'">></span>
+            <span class="arrows" onclick="location.href='/instructor/submissions/${next}'">></span>
           </div>
         </div>
 
@@ -82,10 +82,10 @@
               width="100%"
             ></iframe>
           </div>
-           <form class="scoreSide" >
+           <form class="scoreSide" action="/instructor/submissions/${submissionId}" method="POST">
             <div style="display:flex; flex-direction: row; justify-content: space-between;">
               <span>Score:</span>
-              <input placeholder="${maxScore}" type="number" min="1" max="${maxScore}" value="${grade}">
+              <input name="score" placeholder="${maxScore}" type="number" min="1" max="${maxScore}" value="${grade}">
             </div>
             <div style="flex-grow:1"></div>
             <button type="submit" class="save">Save Score</button>

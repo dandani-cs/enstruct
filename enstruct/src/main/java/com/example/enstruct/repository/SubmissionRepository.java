@@ -2,10 +2,12 @@ package com.example.enstruct.repository;
 
 import com.example.enstruct.model.Attachment;
 import com.example.enstruct.model.Submission;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.RepositoryDefinition;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,4 +28,9 @@ public interface SubmissionRepository extends CrudRepository<Submission, Long> {
 
     @Query(value = "select * from submissions order by submission_date DESC limit 0,1", nativeQuery = true)
     public Optional<Submission> getLatestSubmission();
+
+    @Modifying
+    @Transactional
+    @Query(value = "update submissions set grade = ?1 where submission_id = ?2", nativeQuery = true)
+    public void setSubmissionScore(Double score, long submissionId);
 }

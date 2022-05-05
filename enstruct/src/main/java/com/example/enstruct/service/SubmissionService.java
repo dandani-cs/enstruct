@@ -55,4 +55,9 @@ public class SubmissionService implements ISubmissionService {
         else
             return (Submission) optional.get();
     }
+
+    @Override
+    public void setSubmissionScore(Double score, long submissionId) {
+        repository.setSubmissionScore(score, submissionId);
+    }
 }

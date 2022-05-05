@@ -1,9 +1,6 @@
 package com.example.enstruct.controller;
 import com.example.enstruct.model.*;
-import com.example.enstruct.service.IClassesService;
-import com.example.enstruct.service.IEnrollmentService;
-import com.example.enstruct.service.ISubmissionService;
-import com.example.enstruct.service.IUserService;
+import com.example.enstruct.service.*;
 import com.example.enstruct.util.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.FileInputStream;
@@ -228,6 +226,7 @@ public class SubmissionController {
 
         System.out.println("CODE:"+code);
 
+        model.addAttribute("submissionId", submissionId);
         model.addAttribute("students", students);
         model.addAttribute("submissions", s);
         model.addAttribute("filename", filename);
@@ -235,5 +234,17 @@ public class SubmissionController {
         model.addAttribute("previous", prev);
         model.addAttribute("next", next);
         return "instructorSubmissions";
+    }
+
+    @RequestMapping(value = "/instructor/submissions/{submissionId}", method = RequestMethod.POST)
+    public ModelAndView showInstructorSubmissions(Model model, @PathVariable long submissionId, @RequestParam Double score) throws IOException {
+        String authenticationResponse = AuthManager.getInstance().labelUser(true);
+        if(authenticationResponse != "continue") {
+            return new ModelAndView(authenticationResponse, (Map<String, ?>) model);
+        }
+
+        submissionService.setSubmissionScore(score, submissionId);
+
+        return new ModelAndView("redirect:/instructor/submissions/"+String.valueOf(submissionId), (Map<String, ?>) model);
     }
 }
