@@ -71,6 +71,7 @@ public class RepositoryController {
             }
         }
 
+        model.addAttribute("user", user);
         model.addAttribute("repositories", a);
         model.addAttribute("courseCode", courseCode);
         model.addAttribute("section", section);
@@ -192,6 +193,7 @@ public class RepositoryController {
             }
         }
 
+        model.addAttribute("user", u);
         model.addAttribute("submissions", s);
         model.addAttribute("students", students);
         model.addAttribute("filenames", filenames);

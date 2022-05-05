@@ -122,6 +122,7 @@ public class AnnouncementController {
         }
 
         ModelAndView mv = new ModelAndView();
+        mv.addObject("user", AuthManager.getInstance().getLoggedInUser());
         mv.addObject("announcements", announcements);
         mv.addObject("calendar_table", calendar_table);
         mv.addObject("days_in_mo", num_days_mo);
