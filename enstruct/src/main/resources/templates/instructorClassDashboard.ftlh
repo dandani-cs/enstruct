@@ -23,7 +23,7 @@
             <div class="profile-mini text-center">
                 <img src="/img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
                 <p id="user-fullname">ANDERSON, TIMOTHY</p>
-                <p id="user-role">STUDENT</p>
+                <p id="user-role">INSTRUCTOR</p>
             </div>
             <ul class="nav flex-column nav-pills nav-justified">
                 <li class="nav-item">

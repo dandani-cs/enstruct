@@ -129,7 +129,14 @@
                 <p>${courses[a?index]}</p>
               </div>
               <div class="col-sm-6">
-                Due: ${a.deadline_date}
+                  Due: <# if a.deadline_date??>
+                      ${a.deadline_date}
+                  <#elseif a.deadline??>
+                      ${a.deadline}
+                  <#else>
+                      No deadline set
+                  </#if>
+
               </div>
             </div>
           </div>
