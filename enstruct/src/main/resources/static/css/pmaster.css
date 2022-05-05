@@ -75,9 +75,9 @@ body {
   color: #8F9BB3;
 }
 
-/* .nav-col {
+.nav-col {
   max-width: 250px;
-} */
+}
 
 .nav-item {
   min-height: 65px;
@@ -131,4 +131,8 @@ body {
 
 #user-fullname {
   margin-bottom: 0px;
+}
+
+.main-content {
+  flex-grow:1;
 }

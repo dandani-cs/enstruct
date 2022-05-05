@@ -16,4 +16,5 @@ public interface ISubmissionService {
     List<Submission> getAllSubmissionsOfStudent(long studentNumber);
 
     public Submission getLatestSubmission();
+    public void setSubmissionScore(Double score, long submissionId);
 }
