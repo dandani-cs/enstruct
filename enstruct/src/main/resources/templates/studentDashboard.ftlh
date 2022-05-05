@@ -28,10 +28,10 @@
             <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-fill"></i>Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/instructor/classes"><i class="bi bi-door-closed-fill"></i>Classes</a>
+            <a class="nav-link" href="/student/classes"><i class="bi bi-door-closed-fill"></i>Classes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/instructor/repositories"><i class="bi bi-archive-fill"></i>Repository</a>
+            <a class="nav-link" href="/student/repositories"><i class="bi bi-archive-fill"></i>Repository</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"><i class="bi bi-clipboard-data-fill"></i>Grades</a>
