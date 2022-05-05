@@ -16,7 +16,7 @@ public class Classes {
     private String courseName;
     private Boolean enabled;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OnDelete(action= OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "userId")
     private User teacherId;
