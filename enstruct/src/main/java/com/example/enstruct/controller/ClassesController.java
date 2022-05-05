@@ -91,6 +91,7 @@ public class ClassesController {
 //            professor.add(teacherName);
         }
 
+        model.addAttribute("user", user);
         model.addAttribute("classes", c);
         model.addAttribute("courseCode", courseCode);
         model.addAttribute("section", section);
@@ -167,6 +168,7 @@ public class ClassesController {
         }
 
         ModelAndView mv = new ModelAndView();
+        mv.addObject("user", AuthManager.getInstance().getLoggedInUser());
         mv.addObject("course", course);
         mv.addObject("calendar_table", calendar_table);
         mv.addObject("days_in_mo", num_days_mo);

@@ -105,6 +105,7 @@ public class AssignmentController {
         mv.addObject("assignment", assignment);
         mv.setViewName("updateAssignment");
 
+
         return mv;
     }
 
@@ -171,9 +172,12 @@ public class AssignmentController {
             return mv;
         }
 
+        User user = AuthManager.getInstance().getLoggedInUser();
+
         Submission submission = submissionService.getSubmissionOfStudentInAssignment(studentNumber, assignmentId);
         ModelAndView mv = new ModelAndView("showSubmission");
         mv.addObject("submission", submission);
+        mv.addObject("user", user);
 
         return mv;
     }
@@ -230,7 +234,7 @@ public class AssignmentController {
         String deadline = t.format(DateTimeFormatter.ofPattern("hh:mm a")) + ", " + d.format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"));
         model.addAttribute("assignmentName", a.getName());
         model.addAttribute("deadline", deadline);
-
+        model.addAttribute("user", u);
         model.addAttribute("maxScore", a.getMaxScore());
         model.addAttribute("assignmentId", assignmentId);
         return "studentAssignment";

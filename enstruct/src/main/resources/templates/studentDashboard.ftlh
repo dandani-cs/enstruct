@@ -20,7 +20,7 @@
         <h1 class="title text-center">E-NSTRUCT</h1>
         <div class="profile-mini text-center">
           <img src="img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
-          <p id="user-fullname">ANDERSON, TIMOTHY</p>
+          <p id="user-fullname">${user.lastName?capitalize}, ${user.firstName?capitalize}</p>
           <p id="user-role">STUDENT</p>
         </div>
         <ul class="nav flex-column nav-pills nav-justified">
@@ -129,7 +129,7 @@
                 <p>${courses[a?index]}</p>
               </div>
               <div class="col-sm-6">
-                  Due: <# if a.deadline_date??>
+                  Due: <#if a.deadline_date??>
                       ${a.deadline_date}
                   <#elseif a.deadline??>
                       ${a.deadline}

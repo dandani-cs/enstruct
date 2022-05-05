@@ -59,6 +59,8 @@ public class UserAuthController {
             courses.add(a.getCourse().getCourseName());
         }
 
+        model.addAttribute("user", user);
+        model.addAttribute("student", user);
         model.addAttribute("agenda", agenda);
         model.addAttribute("courses", courses);
 

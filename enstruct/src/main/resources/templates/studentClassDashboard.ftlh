@@ -22,7 +22,7 @@
             <h1 class="title text-center">E-NSTRUCT</h1>
             <div class="profile-mini text-center">
                 <img src="/img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
-                <p id="user-fullname">ANDERSON, TIMOTHY</p>
+                <p id="user-fullname">${user.lastName?capitalize}, ${user.firstName?capitalize}</p>
                 <p id="user-role">STUDENT</p>
             </div>
             <ul class="nav flex-column nav-pills nav-justified">
