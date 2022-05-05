@@ -55,6 +55,10 @@ body {
   margin-bottom: 0 !important;
 }
 
+.btn-primary {
+background-color: #A93226;
+}
+
 .grades-item {
   background-color: #F9EBEA;
   color: #A93226;
@@ -156,7 +160,7 @@ body {
 
 .agenda-item {
   padding: 20px;
-  border-left: 10px solid blue;
+  border-left: 10px solid gray;
 }
 
 .agenda-item p {

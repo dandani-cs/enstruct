@@ -59,3 +59,12 @@ body {
 #user-fullname {
   margin-bottom: 0px;
 }
+
+.btn_primary {
+    background-color: #A93226;
+
+}
+
+.max_width {
+    width: 100%;
+}

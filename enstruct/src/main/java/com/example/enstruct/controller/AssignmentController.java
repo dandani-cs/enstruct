@@ -66,6 +66,7 @@ public class AssignmentController {
         }
 
         model.addAttribute("assignment", assignment);
+        assignment.setDeadline(assignment.getDeadline_date());
         Classes course = assignment.getCourse();
         assignmentService.addAssignment(assignment);
         return "redirect:/instructor/classes/" + course.getCourseCode();

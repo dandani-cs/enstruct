@@ -26,6 +26,9 @@ public class Assignment {
     private int maxScore;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate deadline;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate deadline_date;
 
     @DateTimeFormat(pattern="HH:mm")
@@ -118,6 +121,14 @@ public class Assignment {
 
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
     public void setDeadline_date(String deadline_date_str) {

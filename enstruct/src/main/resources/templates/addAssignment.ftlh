@@ -28,9 +28,8 @@
       <div class="col-sm-2 nav-col">
         <h1 class="title text-center">E-NSTRUCT</h1>
         <div class="profile-mini text-center">
-          <img src="person-pic.jpg" class="rounded mx-auto d-block profile-pic">
-          <p id="user-fullname">ANDERSON, TIMOTHY</p>
-          <p id="user-role">STUDENT</p>
+          <img src="img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
+          <p id="user-role">INSTRUCTOR</p>
         </div>
         <ul class="nav flex-column nav-pills nav-justified">
           <li class="nav-item">
@@ -104,11 +103,10 @@
                 <p>Availability end: <input type="date" name="availabilityEnd" class="form-control" id="availabilityEnd"></p>
               </div>
               <div class="col-sm-4">
-                <label for="attachment" class="form-label">Attach files:</label>
-                <input class="form-control" name="attachment" type="file" id="attachment">
+                <button type="submit" class="btn btn-primary maxwidth" >Submit</button>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
           </form>
         </div>
         </div>

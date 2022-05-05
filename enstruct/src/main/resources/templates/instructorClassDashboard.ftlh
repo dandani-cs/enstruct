@@ -23,7 +23,7 @@
             <div class="profile-mini text-center">
                 <img src="/img/person-pic.jpg" class="rounded mx-auto d-block profile-pic">
                 <p id="user-fullname">ANDERSON, TIMOTHY</p>
-                <p id="user-role">STUDENT</p>
+                <p id="user-role">INSTRUCTOR</p>
             </div>
             <ul class="nav flex-column nav-pills nav-justified">
                 <li class="nav-item">
@@ -93,7 +93,7 @@
                             </div>
                         <div class="col-lg-4 px-3">
                             <div class="agenda-container">
-                                <h5 class="mb-3 agenda-head">Class Assignments</h5>
+                                <h5 class="mb-3 agenda-head">Class Assignments <a href="/assignment-add"><button class="btn btn-primary">Add assignment</button></a> </h5>
                                 <#list assignments_from_now as assignment>
                                     <div class="agenda">
                                         <div class="d-flex flex-column px-4 py-3">
